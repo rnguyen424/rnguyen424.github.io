@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
+    <title>Valentine's Day Proposal</title>
     <style>
         body {
             display: flex;
@@ -11,16 +11,22 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #f0d0e4; /* Pastel purple background color */
+            background-color: #ffc3da; /* Pastel purple background color */
         }
+
         #envelope {
-            width: 200px;
-            height: 150px;
-            background-color: #ffc0cb; /* Pastel pink envelope color */
-            border: 2px solid #333;
             position: relative;
-            cursor: pointer;
+            height: 180px;
+            width: 280px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            margin-left: auto;
+            margin-right: auto;
+            top: 50%;
+            background-color: #FF6863; /* Pastel pink envelope color */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
+
         #envelope:before,
         #envelope:after {
             content: '';
@@ -29,37 +35,78 @@
             height: 0;
             border-style: solid;
         }
+
         #envelope:before {
             border-width: 40px 100px 0;
-            border-color: #ffc0cb transparent transparent transparent;
+            border-color: #FF6863 transparent transparent transparent;
             top: -2px;
             left: 0;
         }
+
         #envelope:after {
             border-width: 40px 0 0 100px;
-            border-color: #ffc0cb transparent transparent transparent;
+            border-color: #FF6863 transparent transparent transparent;
             top: -2px;
             right: 0;
         }
-        #message {
-            display: none;
-            padding: 20px;
-            background-color: #fff;
-            border: 2px solid #333;
-            margin-top: 10px;
+
+        .letter {
+            position: relative;
+            background-color: white;
+            width: 90%;
+            height: 95%;
+            top: 5%;
+            border-radius: 10px;
+            box-shadow: 0 2px 26px rgba(0, 0, 0, .12);
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .words {
+            position: absolute;
+            left: 10%;
+            width: 80%;
+            height: 14%;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: black;
+        }
+
+        .line1 {
+            top: 15%;
+        }
+
+        /* Add more lines as needed */
+
+        #envelope:hover {
+            cursor: pointer;
+        }
+
+        .open .letter {
+            transform: translatey(-80px);
+            transition: transform 0.4s 0.6s ease, z-index 0.6s;
+            z-index: 2;
+        }
+
+        .close .letter {
+            transform: translatey(0deg);
+            transition: transform 0.4s ease, z-index 1s;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <div id="envelope" onclick="openEnvelope()">
-        <div id="message">
-            <p>Will you be my Valentine?</p>
+    <div id="envelope" onclick="toggleEnvelope()">
+        <div class="letter">
+            <p class="words line1">Will you be my Valentine?</p>
         </div>
     </div>
 
     <script>
-        function openEnvelope() {
-            document.getElementById('message').style.display = 'block';
+        function toggleEnvelope() {
+            const envelope = document.getElementById('envelope');
+            envelope.classList.toggle('open');
+            envelope.classList.toggle('close');
         }
     </script>
 </body>
