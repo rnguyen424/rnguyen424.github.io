@@ -4,7 +4,28 @@ import { motion } from "framer-motion";
 
 const StatsSection = () => {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center py-24 px-6">
+    <section className="relative min-h-screen flex flex-col items-center justify-center py-24 px-6 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full gradient-cool opacity-20 blur-[120px]"
+          animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] rounded-full gradient-primary opacity-15 blur-[150px]"
+          animate={{ x: [0, -50, 0], y: [0, -60, 0], scale: [1.1, 0.9, 1.1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full gradient-golden opacity-10 blur-[100px]"
+          animate={{ scale: [0.8, 1.3, 0.8], rotate: [0, 180, 360] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Grid overlay */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'linear-gradient(hsl(var(--muted-foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--muted-foreground)) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

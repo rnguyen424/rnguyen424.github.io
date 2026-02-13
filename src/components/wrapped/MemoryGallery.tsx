@@ -13,7 +13,31 @@ const memories = [
 
 const MemoryGallery = () => {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center py-24 px-6">
+    <section className="relative min-h-screen flex flex-col items-center justify-center py-24 px-6 overflow-hidden">
+      {/* Animated background */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute top-[10%] right-[-5%] w-[450px] h-[450px] rounded-full gradient-warm opacity-20 blur-[130px]"
+          animate={{ x: [0, -40, 0], y: [0, 50, 0] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-[10%] left-[-5%] w-[500px] h-[500px] rounded-full gradient-primary opacity-15 blur-[140px]"
+          animate={{ x: [0, 50, 0], y: [0, -40, 0] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Floating particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-primary/30"
+            style={{ left: `${15 + i * 15}%`, top: `${20 + (i % 3) * 25}%` }}
+            animate={{ y: [0, -30, 0], opacity: [0.2, 0.6, 0.2] }}
+            transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+          />
+        ))}
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
