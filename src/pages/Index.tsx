@@ -5,6 +5,7 @@ import StatsSection from "@/components/wrapped/StatsSection";
 import MemoryGallery from "@/components/wrapped/MemoryGallery";
 import TimelineSection from "@/components/wrapped/TimelineSection";
 import ClosingCard from "@/components/wrapped/ClosingCard";
+import MusicPlayer from "@/components/wrapped/MusicPlayer";
 
 const sections = [HeroCard, StatsSection, MemoryGallery, TimelineSection, ClosingCard];
 
@@ -134,6 +135,8 @@ const Index = () => {
         animate={{ width: `${((currentSection + 1) / sections.length) * 100}%` }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       />
+
+      <MusicPlayer currentSection={currentSection} />
 
       <div ref={containerRef} className="h-screen overflow-hidden">
         {sections.map((Section, i) => (
