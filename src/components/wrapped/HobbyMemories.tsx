@@ -4,10 +4,12 @@ import hobbyClimbing2 from "@/assets/hobby-climbing-2.jpg";
 import hobbyClimbing3 from "@/assets/hobby-climbing-3.jpg";
 import hobbyFitnessBike from "@/assets/hobby-fitness-bike.jpg";
 import hobbyFitnessGym from "@/assets/hobby-fitness-gym.jpg";
-import hobbyPokemon from "@/assets/hobby-pokemon.jpg";
-import hobbyPokemon2 from "@/assets/hobby-pokemon-2.jpg";
-import hobbyPokemon3 from "@/assets/hobby-pokemon-3.jpg";
-import hobbyPokemon4 from "@/assets/hobby-pokemon-4.jpg";
+import cardGengar from "@/assets/card-collecting/gengar.jpg";
+import cardPikachu from "@/assets/card-collecting/pikachu.jpg";
+import cardPull from "@/assets/card-collecting/card-pull.jpg";
+import cardEeveelutions from "@/assets/card-collecting/eeveelutions.jpg";
+import cardCharizard from "@/assets/card-collecting/charizard.jpg";
+import cardBinder from "@/assets/card-collecting/binder.jpg";
 import hobbyFood from "@/assets/hobby-food.jpg";
 import hobbyFood2 from "@/assets/hobby-food-2.jpg";
 import hobbyFood3 from "@/assets/hobby-food-3.jpg";
@@ -40,7 +42,7 @@ const hobbies = [
     title: "Gotta Catch 'Em All",
     subtitle: "Pokémon Card Collecting",
     description: "Opening packs together, chasing rare pulls, and building our collection one holographic card at a time. The thrill never gets old.",
-    images: [hobbyPokemon, hobbyPokemon2, hobbyPokemon3, hobbyPokemon4],
+    images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder],
     bgClass: "hobby-bg-pokemon",
     textGradient: "text-gradient-golden",
     layout: "mosaic" as const,
