@@ -11,13 +11,13 @@ const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
   beaPerfectPair, // 1 - Timeline
   beaPerfectPair, // 2 - HobbyIntro
-  beaPerfectPair, // 3 - Fitness
+  null,           // 3 - Fitness
   pokemonTrack,   // 4 - Pokemon
-  beaPerfectPair, // 5 - Food
-  beaPerfectPair, // 6 - Travel
-  beaPerfectPair, // 7 - Family
-  beaPerfectPair, // 8 - ClosingCard
-  beaPerfectPair, // 9 - Surprise
+  null,           // 5 - Food
+  null,           // 6 - Travel
+  null,           // 7 - Family
+  null,           // 8 - ClosingCard
+  null,           // 9 - Surprise
 ];
 
 const sectionLabels = [
