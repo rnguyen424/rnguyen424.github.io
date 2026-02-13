@@ -69,6 +69,48 @@ const PokemonAtmosphere = () => (
     <div className="absolute top-8 left-8 w-16 h-20 rounded-lg border-2 border-secondary/20 rotate-12" />
     <div className="absolute bottom-12 right-12 w-20 h-28 rounded-lg border-2 border-secondary/15 -rotate-6" />
     <div className="absolute top-1/3 right-6 w-12 h-16 rounded-lg border border-accent/15 rotate-[20deg]" />
+    {/* Pokémon decals */}
+    {["⚡", "🔥", "💧", "🌿", "⭐", "✨"].map((emoji, i) => (
+      <motion.div
+        key={`decal-${i}`}
+        animate={{
+          y: [0, -15, 0],
+          rotate: [0, (i % 2 === 0 ? 10 : -10), 0],
+          opacity: [0.15, 0.35, 0.15],
+        }}
+        transition={{ duration: 4 + i * 0.5, delay: i * 0.7, repeat: Infinity }}
+        className="absolute pointer-events-none select-none"
+        style={{
+          left: `${5 + i * 16}%`,
+          top: `${10 + (i % 3) * 30}%`,
+          fontSize: `${28 + i * 4}px`,
+        }}
+      >
+        {emoji}
+      </motion.div>
+    ))}
+    {/* Pokéball silhouettes */}
+    {[...Array(3)].map((_, i) => (
+      <motion.div
+        key={`pokeball-${i}`}
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 20 + i * 10, repeat: Infinity, ease: "linear" }}
+        className="absolute opacity-[0.07]"
+        style={{
+          left: `${15 + i * 30}%`,
+          top: `${60 + (i % 2) * 20}%`,
+          width: `${50 + i * 15}px`,
+          height: `${50 + i * 15}px`,
+        }}
+      >
+        <svg viewBox="0 0 100 100" fill="currentColor">
+          <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="4" fill="none" />
+          <line x1="2" y1="50" x2="98" y2="50" stroke="currentColor" strokeWidth="4" />
+          <circle cx="50" cy="50" r="15" stroke="currentColor" strokeWidth="4" fill="none" />
+          <circle cx="50" cy="50" r="8" fill="currentColor" />
+        </svg>
+      </motion.div>
+    ))}
   </>
 );
 
@@ -329,7 +371,7 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20"
+                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20"
                 >
                   <img src={images[0]} alt="" className="w-full h-full object-cover" />
                 </motion.div>
@@ -341,6 +383,19 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
                     whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(50, 100%, 55% / 0.3)" }}
+                    className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20 cursor-pointer"
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover" />
+                  </motion.div>
+                ))}
+                {images.slice(3, 6).map((img, i) => (
+                  <motion.div
+                    key={i + 3}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 + i * 0.15, duration: 0.5 }}
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(280, 100%, 55% / 0.3)" }}
                     className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20 cursor-pointer"
                   >
                     <img src={img} alt="" className="w-full h-full object-cover" />
