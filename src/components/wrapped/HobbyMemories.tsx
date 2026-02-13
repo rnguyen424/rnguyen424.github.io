@@ -44,7 +44,7 @@ const hobbies = [
     description: "Opening packs together, chasing rare pulls, and building our collection one holographic card at a time. The thrill never gets old.",
     images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder],
     bgClass: "hobby-bg-pokemon",
-    textGradient: "text-gradient-golden",
+    textGradient: "text-gradient-pokemon",
     layout: "mosaic" as const,
     theme: "pokemon" as const,
   },
