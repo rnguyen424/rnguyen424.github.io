@@ -4,14 +4,14 @@ import { Volume2, VolumeX, Music } from "lucide-react";
 
 import beaPerfectPair from "@/assets/audio/bea-perfectpair.mp3";
 import pokemonTrack from "@/assets/audio/pokemon.mp3";
+import clarityTrack from "@/assets/audio/clarity.mp3";
 
 // Map each section index to its audio source.
-// 0-HeroCard, 1-StatsSection, 2-MemoryGallery, 3-7 Hobbies, 8-Timeline, 9-ClosingCard
 const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
   beaPerfectPair, // 1 - Timeline
   beaPerfectPair, // 2 - HobbyIntro
-  null,           // 3 - Fitness
+  clarityTrack,   // 3 - Fitness
   pokemonTrack,   // 4 - Pokemon
   null,           // 5 - Food
   null,           // 6 - Travel
