@@ -13,7 +13,28 @@ const milestones = [
 
 const TimelineSection = () => {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center py-24 px-6 overflow-y-auto">
+    <section className="relative min-h-screen flex flex-col items-center justify-center py-24 px-6 overflow-y-auto">
+      {/* Animated background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-[5%] left-[10%] w-[400px] h-[400px] rounded-full gradient-golden opacity-15 blur-[120px]"
+          animate={{ x: [0, 30, 0], y: [0, 50, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-[15%] right-[5%] w-[500px] h-[500px] rounded-full gradient-cool opacity-15 blur-[140px]"
+          animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-[40%] right-[30%] w-[300px] h-[300px] rounded-full gradient-warm opacity-10 blur-[100px]"
+          animate={{ scale: [0.9, 1.2, 0.9] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Subtle diagonal lines */}
+        <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'repeating-linear-gradient(45deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)) 1px, transparent 1px, transparent 80px)' }} />
+      </div>
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
