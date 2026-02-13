@@ -9,7 +9,7 @@ interface HobbySlideProps {
   bgClass: string;
   textGradient: string;
   layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid";
-  theme: "fitness" | "pokemon" | "food" | "travel" | "gaming";
+  theme: "fitness" | "pokemon" | "food" | "travel" | "gaming" | "family";
 }
 
 /* ── Themed Atmosphere Overlays ── */
@@ -202,12 +202,42 @@ const GamingAtmosphere = () => (
   </>
 );
 
+const FamilyAtmosphere = () => (
+  <>
+    {/* Warm floating hearts */}
+    {[...Array(8)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{ y: [0, -25, 0], opacity: [0.1, 0.3, 0.1], scale: [0.8, 1.1, 0.8] }}
+        transition={{ duration: 5 + i * 0.7, delay: i * 0.6, repeat: Infinity }}
+        className="absolute text-foreground/10"
+        style={{ left: `${10 + i * 11}%`, top: `${15 + (i % 4) * 18}%`, fontSize: `${14 + i * 2}px` }}
+      >
+        ♥
+      </motion.div>
+    ))}
+    {/* Warm radial glow */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full opacity-15 blur-[150px]" style={{ background: "radial-gradient(circle, hsl(30, 90%, 55%), transparent)" }} />
+    {/* Soft ornamental circles */}
+    <div className="absolute top-10 right-16 w-32 h-32 rounded-full border-2 border-dashed border-foreground/8 rotate-12" />
+    <div className="absolute bottom-16 left-12 w-24 h-24 rounded-full border border-foreground/6" />
+    {/* String lights effect */}
+    <svg className="absolute top-0 left-0 w-full h-20 opacity-[0.08]" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 0 30 Q 100 60 200 30 T 400 30 T 600 30 T 800 30 T 1000 30 T 1200 30 T 1400 30" stroke="currentColor" strokeWidth="1.5" fill="none" />
+      {[...Array(14)].map((_, i) => (
+        <circle key={i} cx={50 + i * 100} cy={30 + (i % 2 === 0 ? 15 : -5)} r="4" fill="hsl(40, 100%, 70%)" opacity="0.6" />
+      ))}
+    </svg>
+  </>
+);
+
 const atmospheres: Record<string, () => ReactNode> = {
   fitness: FitnessAtmosphere,
   pokemon: PokemonAtmosphere,
   food: FoodAtmosphere,
   travel: TravelAtmosphere,
   gaming: GamingAtmosphere,
+  family: FamilyAtmosphere,
 };
 
 const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradient, layout, theme }: HobbySlideProps) => {
