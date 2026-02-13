@@ -9,20 +9,19 @@ import pokemonTrack from "@/assets/audio/pokemon.mp3";
 // 0-HeroCard, 1-StatsSection, 2-MemoryGallery, 3-7 Hobbies, 8-Timeline, 9-ClosingCard
 const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
-  beaPerfectPair, // 1 - StatsSection
-  beaPerfectPair, // 2 - MemoryGallery
-  beaPerfectPair, // 3 - Fitness
-  pokemonTrack,   // 4 - Pokemon
-  beaPerfectPair, // 5 - Food
-  beaPerfectPair, // 6 - Travel
-  beaPerfectPair, // 7 - Family
-  beaPerfectPair, // 8 - TimelineSection
-  beaPerfectPair, // 9 - ClosingCard
-  beaPerfectPair, // 10 - Surprise
+  beaPerfectPair, // 1 - MemoryGallery
+  beaPerfectPair, // 2 - Fitness
+  pokemonTrack,   // 3 - Pokemon
+  beaPerfectPair, // 4 - Food
+  beaPerfectPair, // 5 - Travel
+  beaPerfectPair, // 6 - Family
+  beaPerfectPair, // 7 - TimelineSection
+  beaPerfectPair, // 8 - ClosingCard
+  beaPerfectPair, // 9 - Surprise
 ];
 
 const sectionLabels = [
-  "Intro", "Stats", "Memories",
+  "Intro", "Memories",
   "Fitness", "Pokémon", "Food", "Travel", "Family",
   "Timeline", "Finale", "Surprise",
 ];
