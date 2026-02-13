@@ -365,9 +365,17 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 </h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 items-start">
                 {images.map((img, i) => {
                   const rotations = [-3, 2, -2, 4, -4, 3];
+                  const sizes = [
+                    "col-span-1 md:col-span-2",
+                    "col-span-1",
+                    "col-span-1",
+                    "col-span-1",
+                    "col-span-1 md:col-span-2",
+                    "col-span-1",
+                  ];
                   return (
                     <motion.div
                       key={i}
@@ -376,7 +384,7 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1, duration: 0.5 }}
                       whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
-                      className="rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer"
+                      className={`${sizes[i]} rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer`}
                     >
                       <img src={img} alt="" className="w-full h-auto" />
                     </motion.div>
