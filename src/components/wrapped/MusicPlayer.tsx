@@ -9,20 +9,22 @@ import pokemonTrack from "@/assets/audio/pokemon.mp3";
 // 0-HeroCard, 1-StatsSection, 2-MemoryGallery, 3-7 Hobbies, 8-Timeline, 9-ClosingCard
 const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
-  beaPerfectPair, // 1 - Fitness
-  pokemonTrack,   // 2 - Pokemon
-  beaPerfectPair, // 3 - Food
-  beaPerfectPair, // 4 - Travel
-  beaPerfectPair, // 5 - Family
-  beaPerfectPair, // 6 - TimelineSection
-  beaPerfectPair, // 7 - ClosingCard
-  beaPerfectPair, // 8 - Surprise
+  beaPerfectPair, // 1 - Timeline
+  beaPerfectPair, // 2 - HobbyIntro
+  beaPerfectPair, // 3 - Fitness
+  pokemonTrack,   // 4 - Pokemon
+  beaPerfectPair, // 5 - Food
+  beaPerfectPair, // 6 - Travel
+  beaPerfectPair, // 7 - Family
+  beaPerfectPair, // 8 - ClosingCard
+  beaPerfectPair, // 9 - Surprise
 ];
 
 const sectionLabels = [
   "Intro",
+  "Timeline", "Hobbies",
   "Fitness", "Pokémon", "Food", "Travel", "Family",
-  "Timeline", "Finale", "Surprise",
+  "Finale", "Surprise",
 ];
 
 interface MusicPlayerProps {
