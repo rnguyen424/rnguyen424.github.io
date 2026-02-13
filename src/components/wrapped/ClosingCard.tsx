@@ -32,7 +32,7 @@ const ClosingCard = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.95] mb-8"
         >
-          <span className="text-foreground">Year one was</span>
+          <span className="text-foreground">Six years of</span>
           <br />
           <span className="text-gradient-primary">incredible.</span>
         </motion.h2>
@@ -44,8 +44,8 @@ const ClosingCard = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="text-lg md:text-xl text-muted-foreground font-body mb-12 leading-relaxed"
         >
-          Every moment with you is a story worth telling. Here's to the next
-          365 days of adventures, late-night talks, and falling deeper in love.
+          Every moment with you is a story worth telling. Six years down, forever to go.
+          Here's to more adventures, late-night talks, and falling deeper in love.
         </motion.p>
 
         <motion.div

@@ -35,9 +35,9 @@ const HeroCard = () => {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="font-display text-6xl md:text-8xl lg:text-9xl font-black leading-[0.9] mb-6"
         >
-          <span className="text-gradient-primary">365</span>
+          <span className="text-gradient-primary">6</span>
           <br />
-          <span className="text-foreground">Days of</span>
+          <span className="text-foreground">Years of</span>
           <br />
           <span className="text-gradient-cool">Us</span>
         </motion.h1>
@@ -48,7 +48,7 @@ const HeroCard = () => {
           transition={{ delay: 1, duration: 0.6 }}
           className="text-lg md:text-xl text-muted-foreground font-body max-w-md mx-auto"
         >
-          A year of love, laughter, and everything in between.
+          Six years of love, laughter, and everything in between.
         </motion.p>
 
         <motion.div

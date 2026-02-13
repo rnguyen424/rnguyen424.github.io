@@ -16,13 +16,13 @@ const StatsSection = () => {
           The Numbers
         </p>
         <h2 className="font-display text-4xl md:text-6xl font-black text-foreground">
-          Our Year in <span className="text-gradient-cool">Data</span>
+          6 Years in <span className="text-gradient-cool">Data</span>
         </h2>
       </motion.div>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <StatCard
-          number="8,760"
+          number="52,560"
           label="Hours Together"
           sublabel="And counting..."
           gradient="primary"
@@ -30,7 +30,7 @@ const StatsSection = () => {
           delay={0}
         />
         <StatCard
-          number="12,483"
+          number="74,892"
           label="Messages Sent"
           sublabel="Your top emoji: ❤️"
           gradient="cool"
@@ -38,7 +38,7 @@ const StatsSection = () => {
           delay={0.1}
         />
         <StatCard
-          number="47"
+          number="284"
           label="Date Nights"
           sublabel="Never a dull moment"
           gradient="warm"
@@ -46,7 +46,7 @@ const StatsSection = () => {
           delay={0.2}
         />
         <StatCard
-          number="6"
+          number="23"
           label="Cities Explored"
           sublabel="Adventure mode: ON"
           gradient="golden"
@@ -54,7 +54,7 @@ const StatsSection = () => {
           delay={0.3}
         />
         <StatCard
-          number="312"
+          number="1,847"
           label="Songs Shared"
           sublabel="Your anthem: 'Perfect' by Ed Sheeran"
           gradient="primary"
@@ -62,7 +62,7 @@ const StatsSection = () => {
           delay={0.4}
         />
         <StatCard
-          number="1,095"
+          number="6,570"
           label="Goodnight Calls"
           sublabel="3 per day on average"
           gradient="cool"
