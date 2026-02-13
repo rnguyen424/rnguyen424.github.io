@@ -5,16 +5,25 @@ import { Volume2, VolumeX, Music } from "lucide-react";
 import beaPerfectPair from "@/assets/audio/bea-perfectpair.mp3";
 
 // Map each section index to its audio source.
-// Using the same track for all sections — replace individually if you upload more.
+// 0-HeroCard, 1-StatsSection, 2-MemoryGallery, 3-7 Hobbies, 8-Timeline, 9-ClosingCard
 const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
   beaPerfectPair, // 1 - StatsSection
   beaPerfectPair, // 2 - MemoryGallery
-  beaPerfectPair, // 3 - TimelineSection
-  beaPerfectPair, // 4 - ClosingCard
+  beaPerfectPair, // 3 - Climbing
+  beaPerfectPair, // 4 - Pokemon
+  beaPerfectPair, // 5 - Food
+  beaPerfectPair, // 6 - Travel
+  beaPerfectPair, // 7 - Gaming
+  beaPerfectPair, // 8 - TimelineSection
+  beaPerfectPair, // 9 - ClosingCard
 ];
 
-const sectionLabels = ["Intro", "Stats", "Memories", "Timeline", "Finale"];
+const sectionLabels = [
+  "Intro", "Stats", "Memories",
+  "Climbing", "Pokémon", "Food", "Travel", "Gaming",
+  "Timeline", "Finale",
+];
 
 interface MusicPlayerProps {
   currentSection: number;
