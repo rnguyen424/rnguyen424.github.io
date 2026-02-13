@@ -42,7 +42,7 @@ const hobbies = [
     title: "Gotta Catch 'Em All",
     subtitle: "Pokémon Card Collecting",
     description: "Opening packs together, chasing rare pulls, and building our collection one holographic card at a time. The thrill never gets old.",
-    images: [hobbyPokemon, hobbyPokemon2, hobbyPokemon3, hobbyPokemon4],
+    images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder],
     bgClass: "hobby-bg-pokemon",
     textGradient: "text-gradient-golden",
     layout: "mosaic" as const,
