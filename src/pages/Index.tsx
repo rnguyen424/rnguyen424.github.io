@@ -2,14 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroCard from "@/components/wrapped/HeroCard";
 
-import MemoryGallery from "@/components/wrapped/MemoryGallery";
 import { hobbySlides } from "@/components/wrapped/HobbyMemories";
 import TimelineSection from "@/components/wrapped/TimelineSection";
 import ClosingCard from "@/components/wrapped/ClosingCard";
 import SurpriseReveal from "@/components/wrapped/SurpriseReveal";
 import MusicPlayer from "@/components/wrapped/MusicPlayer";
 
-const sections = [HeroCard, MemoryGallery, ...hobbySlides, TimelineSection, ClosingCard, SurpriseReveal];
+const sections = [HeroCard, ...hobbySlides, TimelineSection, ClosingCard, SurpriseReveal];
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
