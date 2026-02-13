@@ -58,6 +58,8 @@ const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
   }, [isMuted, hasInteracted, currentTrack]);
 
   // Switch tracks when section changes
+  const prevTrackRef = useRef<string | null>(null);
+
   useEffect(() => {
     if (!hasInteracted || isMuted) return;
 
@@ -65,6 +67,11 @@ const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
     if (!audio) return;
 
     if (currentTrack) {
+      // If same track is already playing, do nothing
+      if (prevTrackRef.current === currentTrack && !audio.paused) {
+        return;
+      }
+
       // Fade out then switch
       const fadeOut = setInterval(() => {
         if (audio.volume > 0.05) {
@@ -72,10 +79,10 @@ const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
         } else {
           clearInterval(fadeOut);
           audio.src = currentTrack;
+          prevTrackRef.current = currentTrack;
           audio.volume = 0;
           audio.play().then(() => {
             setIsPlaying(true);
-            // Fade in
             const fadeIn = setInterval(() => {
               if (audio.volume < 0.95) {
                 audio.volume = Math.min(1, audio.volume + 0.05);
@@ -92,6 +99,7 @@ const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
     } else {
       audio.pause();
       setIsPlaying(false);
+      prevTrackRef.current = null;
     }
   }, [currentSection, hasInteracted, isMuted, currentTrack]);
 
