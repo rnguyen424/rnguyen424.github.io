@@ -2,19 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Music } from "lucide-react";
 
-// Import your audio files here — replace these with your actual uploads:
-// import heroTrack from "@/assets/audio/hero.mp3";
-// import statsTrack from "@/assets/audio/stats.mp3";
-// etc.
+import beaPerfectPair from "@/assets/audio/bea-perfectpair.mp3";
 
 // Map each section index to its audio source.
-// Replace null with imported audio files once uploaded.
+// Using the same track for all sections — replace individually if you upload more.
 const sectionTracks: (string | null)[] = [
-  null, // 0 - HeroCard
-  null, // 1 - StatsSection
-  null, // 2 - MemoryGallery
-  null, // 3 - TimelineSection
-  null, // 4 - ClosingCard
+  beaPerfectPair, // 0 - HeroCard
+  beaPerfectPair, // 1 - StatsSection
+  beaPerfectPair, // 2 - MemoryGallery
+  beaPerfectPair, // 3 - TimelineSection
+  beaPerfectPair, // 4 - ClosingCard
 ];
 
 const sectionLabels = ["Intro", "Stats", "Memories", "Timeline", "Finale"];
