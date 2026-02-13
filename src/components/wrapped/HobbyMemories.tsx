@@ -18,10 +18,6 @@ import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
 import hobbyTravel4 from "@/assets/hobby-travel-4.jpg";
-import hobbyGaming from "@/assets/hobby-gaming.jpg";
-import hobbyGaming2 from "@/assets/hobby-gaming-2.jpg";
-import hobbyGaming3 from "@/assets/hobby-gaming-3.jpg";
-import hobbyGaming4 from "@/assets/hobby-gaming-4.jpg";
 import hobbyFamily from "@/assets/hobby-family.jpg";
 import hobbyFamily2 from "@/assets/hobby-family-2.jpg";
 import hobbyFamily3 from "@/assets/hobby-family-3.jpg";
@@ -67,16 +63,6 @@ const hobbies = [
     textGradient: "text-gradient-cool",
     layout: "full-bleed" as const,
     theme: "travel" as const,
-  },
-  {
-    title: "Player Two Forever",
-    subtitle: "Gaming Together",
-    description: "Late-night co-op sessions, celebrating wins and raging at losses — together. We're the ultimate duo.",
-    images: [hobbyGaming, hobbyGaming2, hobbyGaming3, hobbyGaming4],
-    bgClass: "hobby-bg-gaming",
-    textGradient: "text-gradient-blue",
-    layout: "gallery-grid" as const,
-    theme: "gaming" as const,
   },
   {
     title: "Our People",
