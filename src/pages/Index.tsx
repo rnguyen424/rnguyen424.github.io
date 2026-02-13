@@ -27,25 +27,6 @@ const Index = () => {
     }, 1000);
   };
 
-  // Auto-scroll every 8 seconds
-  useEffect(() => {
-    const startAutoScroll = () => {
-      autoScrollTimer.current = setTimeout(() => {
-        setCurrentSection((prev) => {
-          const next = prev < sections.length - 1 ? prev + 1 : prev;
-          if (next !== prev) scrollToSection(next);
-          return next;
-        });
-        if (currentSection < sections.length - 1) startAutoScroll();
-      }, 8000);
-    };
-
-    startAutoScroll();
-    return () => {
-      if (autoScrollTimer.current) clearTimeout(autoScrollTimer.current);
-    };
-  }, [currentSection]);
-
   // Snap scroll on wheel
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
@@ -85,27 +66,6 @@ const Index = () => {
       container?.removeEventListener("touchend", handleTouchEnd);
     };
   }, [currentSection]);
-
-  // Reset auto-scroll on user interaction
-  useEffect(() => {
-    const resetTimer = () => {
-      if (autoScrollTimer.current) clearTimeout(autoScrollTimer.current);
-      autoScrollTimer.current = setTimeout(() => {
-        setCurrentSection((prev) => {
-          const next = prev < sections.length - 1 ? prev + 1 : prev;
-          if (next !== prev) scrollToSection(next);
-          return next;
-        });
-      }, 8000);
-    };
-
-    window.addEventListener("click", resetTimer);
-    window.addEventListener("keydown", resetTimer);
-    return () => {
-      window.removeEventListener("click", resetTimer);
-      window.removeEventListener("keydown", resetTimer);
-    };
-  }, []);
 
   return (
     <div className="h-screen bg-background overflow-hidden relative">
