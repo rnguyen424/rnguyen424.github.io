@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Music } from "lucide-react";
 
 import beaPerfectPair from "@/assets/audio/bea-perfectpair.mp3";
+import pokemonTrack from "@/assets/audio/pokemon.mp3";
 
 // Map each section index to its audio source.
 // 0-HeroCard, 1-StatsSection, 2-MemoryGallery, 3-7 Hobbies, 8-Timeline, 9-ClosingCard
@@ -11,7 +12,8 @@ const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 1 - StatsSection
   beaPerfectPair, // 2 - MemoryGallery
   beaPerfectPair, // 3 - Fitness
-  beaPerfectPair, // 4 - Pokemon
+  pokemonTrack,   // 4 - Pokemon
+
   beaPerfectPair, // 5 - Food
   beaPerfectPair, // 6 - Travel
   beaPerfectPair, // 7 - Gaming
