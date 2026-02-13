@@ -365,29 +365,20 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 </h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="relative w-full min-h-[60vh] md:min-h-[65vh]">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                 {images.map((img, i) => {
-                  const scrapConfigs = [
-                    { top: "0%", left: "0%", w: "w-48 md:w-72", rot: -5, z: 10 },
-                    { top: "5%", left: "55%", w: "w-44 md:w-64", rot: 4, z: 15 },
-                    { top: "30%", left: "10%", w: "w-40 md:w-56", rot: 6, z: 20 },
-                    { top: "25%", left: "50%", w: "w-44 md:w-60", rot: -3, z: 12 },
-                    { top: "55%", left: "5%", w: "w-44 md:w-64", rot: -4, z: 18 },
-                    { top: "50%", left: "48%", w: "w-48 md:w-68", rot: 3, z: 14 },
-                  ];
-                  const c = scrapConfigs[i] || scrapConfigs[0];
+                  const rotations = [-3, 2, -2, 4, -4, 3];
                   return (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 40, rotate: c.rot * 2, scale: 0.85 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: c.rot, scale: 1 }}
+                      initial={{ opacity: 0, y: 30, rotate: rotations[i] * 2, scale: 0.9 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i], scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.12, duration: 0.6 }}
-                      whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
-                      className={`absolute ${c.w} rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer`}
-                      style={{ top: c.top, left: c.left, zIndex: c.z }}
+                      transition={{ delay: i * 0.1, duration: 0.5 }}
+                      whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
+                      className="rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer"
                     >
-                      <img src={img} alt="" className="w-full h-auto object-contain" />
+                      <img src={img} alt="" className="w-full h-auto" />
                     </motion.div>
                   );
                 })}
