@@ -6,9 +6,10 @@ import MemoryGallery from "@/components/wrapped/MemoryGallery";
 import { hobbySlides } from "@/components/wrapped/HobbyMemories";
 import TimelineSection from "@/components/wrapped/TimelineSection";
 import ClosingCard from "@/components/wrapped/ClosingCard";
+import SurpriseReveal from "@/components/wrapped/SurpriseReveal";
 import MusicPlayer from "@/components/wrapped/MusicPlayer";
 
-const sections = [HeroCard, StatsSection, MemoryGallery, ...hobbySlides, TimelineSection, ClosingCard];
+const sections = [HeroCard, StatsSection, MemoryGallery, ...hobbySlides, TimelineSection, ClosingCard, SurpriseReveal];
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);

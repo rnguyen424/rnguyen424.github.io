@@ -10,19 +10,20 @@ const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
   beaPerfectPair, // 1 - StatsSection
   beaPerfectPair, // 2 - MemoryGallery
-  beaPerfectPair, // 3 - Climbing
+  beaPerfectPair, // 3 - Climbing/Gym
   beaPerfectPair, // 4 - Pokemon
   beaPerfectPair, // 5 - Food
   beaPerfectPair, // 6 - Travel
   beaPerfectPair, // 7 - Gaming
   beaPerfectPair, // 8 - TimelineSection
   beaPerfectPair, // 9 - ClosingCard
+  beaPerfectPair, // 10 - Surprise
 ];
 
 const sectionLabels = [
   "Intro", "Stats", "Memories",
-  "Climbing", "Pokémon", "Food", "Travel", "Gaming",
-  "Timeline", "Finale",
+  "Gym & Climbing", "Pokémon", "Food", "Travel", "Gaming",
+  "Timeline", "Finale", "Surprise",
 ];
 
 interface MusicPlayerProps {

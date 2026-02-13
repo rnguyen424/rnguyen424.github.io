@@ -17,14 +17,14 @@ import hobbyGaming3 from "@/assets/hobby-gaming-3.jpg";
 
 const hobbies = [
   {
-    title: "Climbing Together",
-    subtitle: "Our Shared Passion",
-    description: "From our first bouldering session to crushing V5s side by side — the gym became our second home. Every send celebrated together.",
+    title: "Gym Rats & Rock Climbers",
+    subtitle: "Our Shared Grind",
+    description: "From crushing PRs at the gym to sending routes at the climbing wall — we push each other to be stronger every day. Sweat, chalk, and high-fives.",
     images: [hobbyClimbing, hobbyClimbing2, hobbyClimbing3],
     gradient: "gradient-primary",
     layout: "left-tall" as const,
     emoji: "🧗",
-    decals: ["💪", "🏔️", "🤝", "✨"],
+    decals: ["💪", "🏋️", "🤝", "✨"],
   },
   {
     title: "Gotta Catch 'Em All",
