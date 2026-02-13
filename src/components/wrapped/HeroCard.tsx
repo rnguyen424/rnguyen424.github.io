@@ -4,10 +4,23 @@ import { Heart } from "lucide-react";
 const HeroCard = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background glow effects */}
+      {/* Animated background glow effects */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full gradient-primary opacity-20 blur-[120px] animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full gradient-warm opacity-15 blur-[100px] animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full gradient-primary opacity-20 blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], x: [0, -25, 0], y: [0, 25, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full gradient-warm opacity-15 blur-[100px]"
+        />
+        <motion.div
+          animate={{ scale: [0.8, 1.1, 0.8], opacity: [0.1, 0.25, 0.1] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full gradient-cool blur-[150px]"
+        />
       </div>
 
       <div className="relative z-10 text-center px-6">

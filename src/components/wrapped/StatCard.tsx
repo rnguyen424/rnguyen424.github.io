@@ -23,8 +23,9 @@ const StatCard = ({ number, label, sublabel, gradient, icon, delay = 0 }: StatCa
       initial={{ opacity: 0, y: 60, scale: 0.9 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-50px" }}
+      whileHover={{ scale: 1.05, rotate: 1 }}
       transition={{ duration: 0.7, delay, type: "spring", bounce: 0.3 }}
-      className={`relative rounded-3xl p-8 md:p-10 overflow-hidden ${gradientMap[gradient]}`}
+      className={`relative rounded-3xl p-8 md:p-10 overflow-hidden cursor-pointer ${gradientMap[gradient]}`}
     >
       {/* Decorative circles */}
       <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-foreground/5" />

@@ -13,7 +13,7 @@ const memories = [
 
 const MemoryGallery = () => {
   return (
-    <section className="py-24 px-6">
+    <section className="min-h-screen flex flex-col items-center justify-center py-24 px-6">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
