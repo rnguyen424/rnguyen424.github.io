@@ -20,6 +20,10 @@ import hobbyGaming from "@/assets/hobby-gaming.jpg";
 import hobbyGaming2 from "@/assets/hobby-gaming-2.jpg";
 import hobbyGaming3 from "@/assets/hobby-gaming-3.jpg";
 import hobbyGaming4 from "@/assets/hobby-gaming-4.jpg";
+import hobbyFamily from "@/assets/hobby-family.jpg";
+import hobbyFamily2 from "@/assets/hobby-family-2.jpg";
+import hobbyFamily3 from "@/assets/hobby-family-3.jpg";
+import hobbyFamily4 from "@/assets/hobby-family-4.jpg";
 
 const hobbies = [
   {
@@ -71,6 +75,16 @@ const hobbies = [
     textGradient: "text-gradient-blue",
     layout: "gallery-grid" as const,
     theme: "gaming" as const,
+  },
+  {
+    title: "Our People",
+    subtitle: "Family & Loved Ones",
+    description: "The ones who raised us, the ones who cheer us on — every family gathering, holiday, and group hug makes this journey even sweeter.",
+    images: [hobbyFamily, hobbyFamily2, hobbyFamily3, hobbyFamily4],
+    bgClass: "hobby-bg-family",
+    textGradient: "text-gradient-golden",
+    layout: "overlap-right" as const,
+    theme: "family" as const,
   },
 ];
 

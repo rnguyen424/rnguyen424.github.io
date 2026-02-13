@@ -50,6 +50,7 @@
     --hobby-bg-food: linear-gradient(150deg, hsl(270 80% 35%), hsl(340 100% 45%) 50%, hsl(300 60% 30%));
     --hobby-bg-travel: linear-gradient(150deg, hsl(160 80% 30%), hsl(200 100% 40%) 50%, hsl(240 60% 35%));
     --hobby-bg-gaming: linear-gradient(150deg, hsl(260 90% 40%), hsl(200 100% 45%) 50%, hsl(280 70% 30%));
+    --hobby-bg-family: linear-gradient(150deg, hsl(25 90% 35%), hsl(15 80% 45%) 50%, hsl(40 85% 40%));
 
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 0 0% 98%;
@@ -131,4 +132,5 @@
   .hobby-bg-food { background: var(--hobby-bg-food); }
   .hobby-bg-travel { background: var(--hobby-bg-travel); }
   .hobby-bg-gaming { background: var(--hobby-bg-gaming); }
+  .hobby-bg-family { background: var(--hobby-bg-family); }
 }

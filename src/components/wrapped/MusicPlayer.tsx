@@ -10,19 +10,20 @@ const sectionTracks: (string | null)[] = [
   beaPerfectPair, // 0 - HeroCard
   beaPerfectPair, // 1 - StatsSection
   beaPerfectPair, // 2 - MemoryGallery
-  beaPerfectPair, // 3 - Climbing/Gym
+  beaPerfectPair, // 3 - Fitness
   beaPerfectPair, // 4 - Pokemon
   beaPerfectPair, // 5 - Food
   beaPerfectPair, // 6 - Travel
   beaPerfectPair, // 7 - Gaming
-  beaPerfectPair, // 8 - TimelineSection
-  beaPerfectPair, // 9 - ClosingCard
-  beaPerfectPair, // 10 - Surprise
+  beaPerfectPair, // 8 - Family
+  beaPerfectPair, // 9 - TimelineSection
+  beaPerfectPair, // 10 - ClosingCard
+  beaPerfectPair, // 11 - Surprise
 ];
 
 const sectionLabels = [
   "Intro", "Stats", "Memories",
-  "Fitness", "Pokémon", "Food", "Travel", "Gaming",
+  "Fitness", "Pokémon", "Food", "Travel", "Gaming", "Family",
   "Timeline", "Finale", "Surprise",
 ];
 
