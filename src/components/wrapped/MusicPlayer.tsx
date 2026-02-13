@@ -22,7 +22,7 @@ const sectionTracks: (string | null)[] = [
 
 const sectionLabels = [
   "Intro", "Stats", "Memories",
-  "Gym & Climbing", "Pokémon", "Food", "Travel", "Gaming",
+  "Fitness", "Pokémon", "Food", "Travel", "Gaming",
   "Timeline", "Finale", "Surprise",
 ];
 
