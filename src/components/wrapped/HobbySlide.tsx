@@ -345,51 +345,84 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
 
         {/* MOSAIC — Pokémon: playful grid with holographic feel */}
         {layout === "mosaic" && (
-          <div className="min-h-screen flex flex-col justify-center px-6 md:px-16 py-12">
-            <div className="max-w-6xl mx-auto w-full">
+          <div className="h-screen flex flex-col justify-center px-4 md:px-12 py-6 overflow-hidden">
+            <div className="max-w-6xl mx-auto w-full flex flex-col h-full justify-center">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="mb-6 md:mb-8"
+                className="mb-3 md:mb-4 flex-shrink-0"
               >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.95] ${textGradient}`}>
+                <p className="text-xs font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
+                <h2 className={`font-display text-3xl md:text-5xl font-black mb-1 leading-[0.95] ${textGradient}`}>
                   {title}
                   <motion.span
                     animate={{ opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="inline-block ml-3 text-4xl md:text-5xl"
+                    className="inline-block ml-2 text-2xl md:text-3xl"
                   >⚡</motion.span>
                 </h2>
-                <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg">{description}</p>
+                <p className="text-xs md:text-sm text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 items-start">
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 items-start flex-1 max-h-[70vh]">
                 {images.map((img, i) => {
                   const rotations = [-3, 2, -2, 4, -4, 3];
                   const sizes = [
-                    "col-span-1 md:col-span-2",
+                    "col-span-1 row-span-2",
                     "col-span-1",
                     "col-span-1",
                     "col-span-1",
-                    "col-span-1 md:col-span-2",
+                    "col-span-1 row-span-2",
                     "col-span-1",
                   ];
                   return (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 30, rotate: rotations[i] * 2, scale: 0.9 }}
+                      initial={{ opacity: 0, y: 20, rotate: rotations[i] * 2, scale: 0.9 }}
                       whileInView={{ opacity: 1, y: 0, rotate: rotations[i], scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1, duration: 0.5 }}
+                      transition={{ delay: i * 0.08, duration: 0.5 }}
                       whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
-                      className={`${sizes[i]} rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer`}
+                      className={`${sizes[i]} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer`}
                     >
-                      <img src={img} alt="" className="w-full h-auto" />
+                      <img src={img} alt="" className="w-full h-full object-cover" />
                     </motion.div>
                   );
                 })}
+              </div>
+
+              {/* Pokémon decal stickers scattered over the grid */}
+              <div className="absolute inset-0 pointer-events-none z-20">
+                {["🔴", "⚪"].map((ball, i) => (
+                  <motion.div
+                    key={`ball-${i}`}
+                    animate={{ y: [0, -8, 0], rotate: [0, 15, 0] }}
+                    transition={{ duration: 3 + i, delay: i * 1.5, repeat: Infinity }}
+                    className="absolute text-2xl md:text-3xl opacity-30"
+                    style={{ right: `${8 + i * 12}%`, bottom: `${10 + i * 15}%` }}
+                  >
+                    {ball}
+                  </motion.div>
+                ))}
+                {/* Pikachu, Charizard, Gengar, Eevee silhouette text decals */}
+                {["⚡ Pikachu", "🔥 Charizard", "👻 Gengar", "🌟 Eevee"].map((label, i) => (
+                  <motion.span
+                    key={`label-${i}`}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 0.15 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + i * 0.2 }}
+                    className="absolute font-display text-xs md:text-sm font-bold uppercase tracking-widest text-foreground/20"
+                    style={{
+                      left: `${5 + i * 22}%`,
+                      bottom: `${4 + (i % 2) * 6}%`,
+                      transform: `rotate(${-5 + i * 3}deg)`,
+                    }}
+                  >
+                    {label}
+                  </motion.span>
+                ))}
               </div>
             </div>
           </div>
