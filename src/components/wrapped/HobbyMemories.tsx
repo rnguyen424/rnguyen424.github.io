@@ -30,6 +30,7 @@ const hobbies = [
     bgClass: "hobby-bg-fitness",
     textGradient: "text-gradient-primary",
     layout: "hero-left" as const,
+    theme: "fitness" as const,
   },
   {
     title: "Gotta Catch 'Em All",
@@ -39,6 +40,7 @@ const hobbies = [
     bgClass: "hobby-bg-pokemon",
     textGradient: "text-gradient-golden",
     layout: "mosaic" as const,
+    theme: "pokemon" as const,
   },
   {
     title: "Foodies For Life",
@@ -48,6 +50,7 @@ const hobbies = [
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",
     layout: "overlap-right" as const,
+    theme: "food" as const,
   },
   {
     title: "Adventure Awaits",
@@ -57,6 +60,7 @@ const hobbies = [
     bgClass: "hobby-bg-travel",
     textGradient: "text-gradient-cool",
     layout: "full-bleed" as const,
+    theme: "travel" as const,
   },
   {
     title: "Player Two Forever",
@@ -66,6 +70,7 @@ const hobbies = [
     bgClass: "hobby-bg-gaming",
     textGradient: "text-gradient-blue",
     layout: "gallery-grid" as const,
+    theme: "gaming" as const,
   },
 ];
 

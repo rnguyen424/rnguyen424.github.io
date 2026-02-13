@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
 interface HobbySlideProps {
   title: string;
@@ -8,41 +9,242 @@ interface HobbySlideProps {
   bgClass: string;
   textGradient: string;
   layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid";
-  captions?: string[];
+  theme: "fitness" | "pokemon" | "food" | "travel" | "gaming";
 }
 
-const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradient, layout, captions = [] }: HobbySlideProps) => {
+/* ── Themed Atmosphere Overlays ── */
+const FitnessAtmosphere = () => (
+  <>
+    {/* Dynamic diagonal speed lines */}
+    {[...Array(8)].map((_, i) => (
+      <motion.div
+        key={i}
+        initial={{ x: "100%", opacity: 0 }}
+        whileInView={{ x: "-100%", opacity: [0, 0.15, 0] }}
+        viewport={{ once: true }}
+        transition={{ duration: 2 + i * 0.3, delay: i * 0.2, repeat: Infinity, repeatDelay: 3 }}
+        className="absolute h-[2px] bg-foreground/20"
+        style={{ top: `${10 + i * 10}%`, width: `${30 + i * 5}%`, transform: "rotate(-15deg)" }}
+      />
+    ))}
+    {/* Bold geometric accent */}
+    <div className="absolute -top-20 -right-20 w-80 h-80 border-[6px] border-foreground/10 rounded-full" />
+    <div className="absolute bottom-10 -left-10 w-40 h-40 border-[4px] border-foreground/8 rotate-45" />
+    {/* Energy pulse */}
+    <motion.div
+      animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.05, 0.15] }}
+      transition={{ duration: 3, repeat: Infinity }}
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border-2 border-primary/20"
+    />
+  </>
+);
+
+const PokemonAtmosphere = () => (
+  <>
+    {/* Holographic shimmer overlay */}
+    <motion.div
+      animate={{ backgroundPosition: ["0% 0%", "200% 200%"] }}
+      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+      className="absolute inset-0 opacity-[0.08]"
+      style={{
+        backgroundImage: "linear-gradient(135deg, transparent 25%, hsl(280, 100%, 70%) 30%, hsl(180, 100%, 70%) 35%, hsl(50, 100%, 70%) 40%, transparent 45%)",
+        backgroundSize: "200% 200%",
+      }}
+    />
+    {/* Floating sparkles */}
+    {[...Array(12)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          y: [0, -20, 0],
+          opacity: [0, 0.6, 0],
+          scale: [0.5, 1, 0.5],
+        }}
+        transition={{ duration: 2 + Math.random() * 2, delay: i * 0.4, repeat: Infinity }}
+        className="absolute w-1.5 h-1.5 rounded-full bg-secondary"
+        style={{ left: `${8 + i * 8}%`, top: `${20 + (i % 5) * 15}%` }}
+      />
+    ))}
+    {/* Card corner decorations */}
+    <div className="absolute top-8 left-8 w-16 h-20 rounded-lg border-2 border-secondary/20 rotate-12" />
+    <div className="absolute bottom-12 right-12 w-20 h-28 rounded-lg border-2 border-secondary/15 -rotate-6" />
+    <div className="absolute top-1/3 right-6 w-12 h-16 rounded-lg border border-accent/15 rotate-[20deg]" />
+  </>
+);
+
+const FoodAtmosphere = () => (
+  <>
+    {/* Warm steam/smoke rising effect */}
+    {[...Array(5)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{
+          y: [0, -80, -160],
+          opacity: [0, 0.12, 0],
+          x: [0, (i % 2 === 0 ? 15 : -15), 0],
+        }}
+        transition={{ duration: 4 + i, delay: i * 0.8, repeat: Infinity }}
+        className="absolute bottom-1/3 w-20 h-40 rounded-full bg-foreground/5 blur-xl"
+        style={{ left: `${20 + i * 15}%` }}
+      />
+    ))}
+    {/* Organic blob shapes */}
+    <motion.div
+      animate={{ rotate: [0, 360] }}
+      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+      className="absolute -top-32 -right-32 w-96 h-96 opacity-10"
+      style={{
+        borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+        background: "hsl(30, 100%, 55%)",
+      }}
+    />
+    <motion.div
+      animate={{ rotate: [360, 0] }}
+      transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+      className="absolute -bottom-24 -left-24 w-72 h-72 opacity-10"
+      style={{
+        borderRadius: "40% 60% 70% 30% / 40% 70% 30% 60%",
+        background: "hsl(340, 80%, 55%)",
+      }}
+    />
+    {/* Dotted accent circles */}
+    <div className="absolute top-16 right-20 w-24 h-24 rounded-full border-2 border-dashed border-secondary/15" />
+  </>
+);
+
+const TravelAtmosphere = () => (
+  <>
+    {/* Compass / map grid lines */}
+    <div className="absolute inset-0 opacity-[0.04]" style={{
+      backgroundImage: `
+        linear-gradient(0deg, hsl(var(--foreground)) 1px, transparent 1px),
+        linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)
+      `,
+      backgroundSize: "80px 80px",
+    }} />
+    {/* Compass rose */}
+    <motion.div
+      animate={{ rotate: [0, 360] }}
+      transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+      className="absolute top-12 right-16 w-28 h-28 opacity-10"
+    >
+      <div className="absolute inset-0 border-2 border-accent/30 rounded-full" />
+      <div className="absolute top-1/2 left-0 right-0 h-px bg-accent/20" />
+      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-accent/20" />
+      <div className="absolute inset-0 border-2 border-accent/20 rounded-full rotate-45" style={{ inset: "15%" }} />
+    </motion.div>
+    {/* Stamp-like decorative boxes */}
+    <div className="absolute bottom-16 left-10 px-4 py-2 border-2 border-foreground/10 rounded-sm rotate-[-8deg]">
+      <span className="text-[10px] font-body uppercase tracking-[0.3em] text-foreground/15">Passport Stamp</span>
+    </div>
+    <div className="absolute top-20 left-1/3 px-3 py-1.5 border border-accent/15 rounded-full rotate-[5deg]">
+      <span className="text-[9px] font-body uppercase tracking-[0.2em] text-foreground/10">Adventure</span>
+    </div>
+    {/* Dotted route line */}
+    <svg className="absolute inset-0 w-full h-full opacity-[0.06]" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 0 400 Q 200 200 400 350 T 800 250 T 1200 400 T 1600 300" stroke="currentColor" strokeWidth="2" strokeDasharray="8 8" fill="none" />
+    </svg>
+  </>
+);
+
+const GamingAtmosphere = () => (
+  <>
+    {/* Scanline effect */}
+    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{
+      backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, hsl(var(--foreground)) 2px, hsl(var(--foreground)) 3px)",
+      backgroundSize: "100% 4px",
+    }} />
+    {/* Neon glow pulses */}
+    <motion.div
+      animate={{ opacity: [0.1, 0.25, 0.1] }}
+      transition={{ duration: 2, repeat: Infinity }}
+      className="absolute top-0 left-0 right-0 h-px bg-accent shadow-[0_0_20px_5px_hsl(200,100%,50%/0.3)]"
+    />
+    <motion.div
+      animate={{ opacity: [0.1, 0.25, 0.1] }}
+      transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+      className="absolute bottom-0 left-0 right-0 h-px bg-primary shadow-[0_0_20px_5px_hsl(340,100%,55%/0.3)]"
+    />
+    {/* Pixel grid accent */}
+    <div className="absolute top-8 right-8 grid grid-cols-4 gap-1 opacity-15">
+      {[...Array(16)].map((_, i) => (
+        <motion.div
+          key={i}
+          animate={{ opacity: [0.3, 1, 0.3] }}
+          transition={{ duration: 1.5, delay: i * 0.1, repeat: Infinity }}
+          className="w-2 h-2 rounded-sm"
+          style={{ background: i % 3 === 0 ? "hsl(200,100%,60%)" : i % 3 === 1 ? "hsl(270,90%,65%)" : "hsl(340,100%,55%)" }}
+        />
+      ))}
+    </div>
+    {/* Controller button hints */}
+    <div className="absolute bottom-12 left-10 flex gap-3 opacity-10">
+      {["A", "B", "X", "Y"].map((btn, i) => (
+        <div key={i} className="w-8 h-8 rounded-full border-2 border-foreground/30 flex items-center justify-center">
+          <span className="text-[10px] font-display font-bold text-foreground/40">{btn}</span>
+        </div>
+      ))}
+    </div>
+    {/* Floating hexagons */}
+    {[...Array(4)].map((_, i) => (
+      <motion.div
+        key={i}
+        animate={{ y: [0, -10, 0], rotate: [0, 30, 0] }}
+        transition={{ duration: 5 + i, delay: i * 1.5, repeat: Infinity }}
+        className="absolute w-12 h-12 border border-accent/10"
+        style={{
+          left: `${15 + i * 22}%`,
+          top: `${25 + (i % 3) * 20}%`,
+          clipPath: "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
+        }}
+      />
+    ))}
+  </>
+);
+
+const atmospheres: Record<string, () => ReactNode> = {
+  fitness: FitnessAtmosphere,
+  pokemon: PokemonAtmosphere,
+  food: FoodAtmosphere,
+  travel: TravelAtmosphere,
+  gaming: GamingAtmosphere,
+};
+
+const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradient, layout, theme }: HobbySlideProps) => {
+  const Atmosphere = atmospheres[theme];
+
   return (
     <section className={`min-h-screen flex items-center justify-center relative overflow-hidden ${bgClass}`}>
-      {/* Noise texture overlay */}
+      {/* Noise texture */}
       <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{
         backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E\")",
       }} />
 
+      {/* Theme-specific atmosphere */}
+      {Atmosphere && <Atmosphere />}
+
       <div className="relative z-10 w-full h-full">
 
-        {/* HERO LEFT — big image left, text right, small images stacked */}
+        {/* HERO LEFT — Fitness: bold, aggressive, dynamic */}
         {layout === "hero-left" && (
           <div className="min-h-screen flex items-center px-6 md:px-16 py-12">
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 w-full max-w-7xl mx-auto">
-              {/* Image cluster */}
               <div className="w-full md:w-3/5 relative">
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.7 }}
-                  className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]"
+                  className="rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] ring-2 ring-foreground/10"
                 >
                   <img src={images[0]} alt={title} className="w-full h-full object-cover" />
                 </motion.div>
-                {/* Small overlapping thumbnails */}
                 <div className="absolute -bottom-4 -right-2 md:right-4 flex gap-2">
                   {images.slice(1, 4).map((img, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 30, rotate: (i - 1) * 6 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 4 }}
+                      initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + i * 0.12, duration: 0.5 }}
                       className="w-20 h-20 md:w-28 md:h-28 rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10"
@@ -53,7 +255,6 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                   ))}
                 </div>
               </div>
-              {/* Text */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -62,14 +263,15 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 className="w-full md:w-2/5"
               >
                 <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-2">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-4 leading-[0.95] ${textGradient}`}>{title}</h2>
+                <h2 className={`font-display text-5xl md:text-7xl font-black mb-4 leading-[0.95] ${textGradient} uppercase`}>{title}</h2>
+                <div className="w-16 h-1 gradient-primary rounded-full mb-4" />
                 <p className="text-sm md:text-base text-foreground/70 font-body leading-relaxed">{description}</p>
               </motion.div>
             </div>
           </div>
         )}
 
-        {/* MOSAIC — text top, images in tight asymmetric grid below */}
+        {/* MOSAIC — Pokémon: playful grid with holographic feel */}
         {layout === "mosaic" && (
           <div className="min-h-screen flex flex-col justify-center px-6 md:px-16 py-12">
             <div className="max-w-6xl mx-auto w-full">
@@ -81,17 +283,23 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 className="mb-6 md:mb-8"
               >
                 <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.95] ${textGradient}`}>{title}</h2>
+                <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.95] ${textGradient}`}>
+                  {title}
+                  <motion.span
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="inline-block ml-3 text-4xl md:text-5xl"
+                  >⚡</motion.span>
+                </h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              {/* Asymmetric image grid */}
               <div className="grid grid-cols-3 grid-rows-2 gap-3 md:gap-4 h-[50vh] md:h-[55vh]">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.85 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-xl"
+                  className="col-span-2 row-span-2 rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20"
                 >
                   <img src={images[0]} alt="" className="w-full h-full object-cover" />
                 </motion.div>
@@ -102,7 +310,8 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
-                    className="rounded-2xl overflow-hidden shadow-xl"
+                    whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(50, 100%, 55% / 0.3)" }}
+                    className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20 cursor-pointer"
                   >
                     <img src={img} alt="" className="w-full h-full object-cover" />
                   </motion.div>
@@ -112,7 +321,7 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
           </div>
         )}
 
-        {/* OVERLAP RIGHT — text left, stacked overlapping images on right */}
+        {/* OVERLAP RIGHT — Food: warm, organic, inviting */}
         {layout === "overlap-right" && (
           <div className="min-h-screen flex items-center px-6 md:px-16 py-12">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full max-w-7xl mx-auto">
@@ -124,10 +333,19 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 className="w-full md:w-2/5"
               >
                 <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-2">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-4 leading-[0.95] ${textGradient}`}>{title}</h2>
+                <h2 className={`font-display text-5xl md:text-7xl font-black mb-4 leading-[0.95] italic ${textGradient}`}>{title}</h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body leading-relaxed">{description}</p>
+                {/* Recipe card accent */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-6 px-5 py-3 rounded-xl bg-foreground/5 border border-foreground/10 inline-block"
+                >
+                  <span className="text-xs font-body text-foreground/50 italic">Our secret ingredient: love 🤍</span>
+                </motion.div>
               </motion.div>
-              {/* Overlapping image stack */}
               <div className="w-full md:w-3/5 relative min-h-[350px] md:min-h-[450px]">
                 {images.slice(0, 4).map((img, i) => {
                   const configs = [
@@ -145,7 +363,7 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.12, duration: 0.6 }}
                       whileHover={{ scale: 1.06, rotate: 0, zIndex: 30 }}
-                      className={`absolute ${c.w} aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-2 border-foreground/5 cursor-pointer`}
+                      className={`absolute ${c.w} aspect-[4/3] rounded-[1.5rem] overflow-hidden shadow-2xl border-2 border-foreground/5 cursor-pointer`}
                       style={{ top: c.top, left: c.left, zIndex: c.z }}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
@@ -157,10 +375,9 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
           </div>
         )}
 
-        {/* FULL BLEED — giant image background with text overlay */}
+        {/* FULL BLEED — Travel: cinematic, immersive, epic */}
         {layout === "full-bleed" && (
           <div className="min-h-screen relative flex items-end md:items-center">
-            {/* Full background image */}
             <motion.div
               initial={{ opacity: 0, scale: 1.1 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -169,12 +386,11 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
               className="absolute inset-0"
             >
               <img src={images[0]} alt="" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
-              <div className={`absolute inset-0 opacity-40 ${bgClass} mix-blend-multiply`} />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
             </motion.div>
-            {/* Content overlay */}
-            <div className="relative z-10 w-full px-6 md:px-16 pb-16 md:pb-24">
-              <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-end md:items-end gap-6">
+            <div className="relative z-10 w-full px-6 md:px-16 pb-16 md:py-0">
+              <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-end md:items-center gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -182,20 +398,19 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                   transition={{ duration: 0.7 }}
                   className="flex-1"
                 >
-                  <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-2">{subtitle}</p>
-                  <h2 className={`font-display text-5xl md:text-8xl font-black mb-3 leading-[0.95] ${textGradient}`}>{title}</h2>
+                  <p className="text-xs md:text-sm font-body uppercase tracking-[0.4em] text-accent mb-3">{subtitle}</p>
+                  <h2 className={`font-display text-6xl md:text-9xl font-black mb-3 leading-[0.9] ${textGradient}`}>{title}</h2>
                   <p className="text-sm md:text-base text-foreground/80 font-body leading-relaxed max-w-lg">{description}</p>
                 </motion.div>
-                {/* Side thumbnails */}
                 <div className="flex gap-3">
                   {images.slice(1, 4).map((img, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, y: 30, rotate: (i - 1) * 5 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: (i - 1) * 3 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.4 + i * 0.1, duration: 0.5 }}
-                      className="w-24 h-24 md:w-32 md:h-32 rounded-xl overflow-hidden shadow-xl border border-foreground/10"
+                      className="w-24 h-24 md:w-36 md:h-36 rounded-xl overflow-hidden shadow-xl border border-foreground/10"
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
                     </motion.div>
@@ -206,7 +421,7 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
           </div>
         )}
 
-        {/* GALLERY GRID — dense masonry-style grid with text overlay */}
+        {/* GALLERY GRID — Gaming: neon, techy, grid-based */}
         {layout === "gallery-grid" && (
           <div className="min-h-screen flex flex-col justify-center px-6 md:px-12 py-12">
             <div className="max-w-7xl mx-auto w-full">
@@ -217,11 +432,12 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 transition={{ duration: 0.5 }}
                 className="text-center mb-6 md:mb-8"
               >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.95] ${textGradient}`}>{title}</h2>
+                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-accent mb-1">{subtitle}</p>
+                <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.95] ${textGradient}`}>
+                  {"< "}{title}{" />"}
+                </h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg mx-auto">{description}</p>
               </motion.div>
-              {/* Tight 4-column grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
                 {images.map((img, i) => (
                   <motion.div
@@ -230,8 +446,12 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
-                    whileHover={{ scale: 1.05, zIndex: 10 }}
-                    className={`rounded-2xl overflow-hidden shadow-xl cursor-pointer ${
+                    whileHover={{
+                      scale: 1.05,
+                      zIndex: 10,
+                      boxShadow: "0 0 40px hsl(200, 100%, 50% / 0.4)",
+                    }}
+                    className={`rounded-xl overflow-hidden shadow-xl cursor-pointer border border-accent/10 transition-shadow ${
                       i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-[4/3]"
                     }`}
                   >
