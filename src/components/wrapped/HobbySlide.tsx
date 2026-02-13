@@ -365,42 +365,32 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
                 </h2>
                 <p className="text-sm md:text-base text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="grid grid-cols-3 grid-rows-2 gap-3 md:gap-4 h-[50vh] md:h-[55vh]">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  className="col-span-2 row-span-1 rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20"
-                >
-                  <img src={images[0]} alt="" className="w-full h-full object-cover" />
-                </motion.div>
-                {images.slice(1, 3).map((img, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2 + i * 0.15, duration: 0.5 }}
-                    whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(50, 100%, 55% / 0.3)" }}
-                    className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20 cursor-pointer"
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </motion.div>
-                ))}
-                {images.slice(3, 6).map((img, i) => (
-                  <motion.div
-                    key={i + 3}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + i * 0.15, duration: 0.5 }}
-                    whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(280, 100%, 55% / 0.3)" }}
-                    className="rounded-2xl overflow-hidden shadow-xl ring-1 ring-secondary/20 cursor-pointer"
-                  >
-                    <img src={img} alt="" className="w-full h-full object-cover" />
-                  </motion.div>
-                ))}
+              <div className="relative w-full min-h-[60vh] md:min-h-[65vh]">
+                {images.map((img, i) => {
+                  const scrapConfigs = [
+                    { top: "0%", left: "0%", w: "w-48 md:w-72", rot: -5, z: 10 },
+                    { top: "5%", left: "55%", w: "w-44 md:w-64", rot: 4, z: 15 },
+                    { top: "30%", left: "10%", w: "w-40 md:w-56", rot: 6, z: 20 },
+                    { top: "25%", left: "50%", w: "w-44 md:w-60", rot: -3, z: 12 },
+                    { top: "55%", left: "5%", w: "w-44 md:w-64", rot: -4, z: 18 },
+                    { top: "50%", left: "48%", w: "w-48 md:w-68", rot: 3, z: 14 },
+                  ];
+                  const c = scrapConfigs[i] || scrapConfigs[0];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 40, rotate: c.rot * 2, scale: 0.85 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: c.rot, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.12, duration: 0.6 }}
+                      whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
+                      className={`absolute ${c.w} rounded-2xl overflow-hidden shadow-2xl border-[3px] border-foreground/10 cursor-pointer`}
+                      style={{ top: c.top, left: c.left, zIndex: c.z }}
+                    >
+                      <img src={img} alt="" className="w-full h-auto object-contain" />
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </div>
