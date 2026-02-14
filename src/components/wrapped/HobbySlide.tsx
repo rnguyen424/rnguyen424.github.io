@@ -521,7 +521,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                       whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
                       className={`${style.colSpan} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer min-h-0`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                      <img src={img} alt="" className="w-full h-full object-contain" />
                     </motion.div>
                   );
                 })}
