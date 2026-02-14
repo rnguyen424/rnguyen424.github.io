@@ -14,6 +14,11 @@ import hobbyFood from "@/assets/hobby-food.jpg";
 import hobbyFood2 from "@/assets/hobby-food-2.jpg";
 import hobbyFood3 from "@/assets/hobby-food-3.jpg";
 import hobbyFood4 from "@/assets/hobby-food-4.jpg";
+import hobbyFood5 from "@/assets/hobby-food-5.jpg";
+import hobbyFood6 from "@/assets/hobby-food-6.jpg";
+import hobbyFood7 from "@/assets/hobby-food-7.jpg";
+import hobbyFood8 from "@/assets/hobby-food-8.jpg";
+import hobbyFood9 from "@/assets/hobby-food-9.jpg";
 import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
@@ -46,9 +51,9 @@ const hobbies = [
   },
   {
     title: "Foodies For Life",
-    subtitle: "Eating & Cooking Adventures",
-    description: "From kitchen experiments to hidden gem restaurants — food has always been our love language. Every meal is an adventure.",
-    images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4],
+    subtitle: "We Just Love to Eat!",
+    description: "From hidden gem restaurants to late-night feasts — food is our love language. Every bite is a memory, every meal an adventure.",
+    images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood5, hobbyFood6, hobbyFood7, hobbyFood8, hobbyFood9],
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",
     layout: "overlap-right" as const,
