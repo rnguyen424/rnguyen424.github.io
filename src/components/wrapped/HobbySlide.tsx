@@ -419,13 +419,14 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
               </motion.div>
 
               {/* Pokéball grid with reveal animation */}
-              <div className="grid grid-cols-3 gap-3 md:gap-4 max-h-[55vh] place-items-center" style={{ gridAutoRows: "1fr" }}>
+              <div className="flex flex-wrap justify-center gap-3 md:gap-4 max-h-[58vh] overflow-hidden">
                 {images.map((img, i) => {
                   const delay = 0.6 + i * 0.25;
                   return (
                     <motion.div
                       key={i}
-                      className="relative w-full h-full min-h-0 flex items-center justify-center"
+                      className="relative flex items-center justify-center"
+                      style={{ height: "calc((58vh - 2rem) / 3)", width: "auto" }}
                       initial="closed"
                       whileInView="open"
                       viewport={{ once: true }}
@@ -531,7 +532,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
 
                       {/* The revealed image */}
                       <motion.div
-                        className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border-2 border-secondary/30"
+                        className="h-full rounded-2xl overflow-hidden shadow-2xl border-2 border-secondary/30"
                         variants={{
                           closed: { opacity: 0, scale: 0.3, rotate: -10 },
                           open: { opacity: 1, scale: 1, rotate: 0 },
@@ -539,7 +540,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                         transition={{ delay: delay + 0.3, duration: 0.6, type: "spring", bounce: 0.4 }}
                         whileHover={{ scale: 1.08, zIndex: 30, rotate: 0 }}
                       >
-                        <img src={img} alt="" className="w-full h-full object-cover" />
+                        <img src={img} alt="" className="h-full w-auto object-contain" />
                       </motion.div>
                     </motion.div>
                   );
