@@ -417,9 +417,9 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                 </h2>
                 <p className="text-xs md:text-sm text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 items-start flex-1 max-h-[70vh]">
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-3 items-start flex-1 max-h-[75vh] auto-rows-fr">
                 {images.map((img, i) => {
-                  const rotations = [-3, 2, -2, 4, -4, 3];
+                  const rotations = [-3, 2, -2, 4, -4, 3, -1, 3, -2];
                   const sizes = [
                     "col-span-1 row-span-2",
                     "col-span-1",
@@ -427,16 +427,19 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                     "col-span-1",
                     "col-span-1 row-span-2",
                     "col-span-1",
+                    "col-span-1",
+                    "col-span-1",
+                    "col-span-1",
                   ];
                   return (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 20, rotate: rotations[i] * 2, scale: 0.9 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i], scale: 1 }}
+                      initial={{ opacity: 0, y: 20, rotate: (rotations[i % rotations.length]) * 2, scale: 0.9 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length], scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.08, duration: 0.5 }}
                       whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
-                      className={`${sizes[i]} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer`}
+                      className={`${sizes[i] || ""} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
                     </motion.div>
