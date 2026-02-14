@@ -75,7 +75,7 @@ const Index = () => {
     <div className="h-screen bg-background overflow-hidden relative">
       {/* Progress dots */}
       <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
-        {sections.map((_, i) => (
+        {sections.slice(0, -1).map((_, i) => (
           <button
             key={i}
             onClick={() => scrollToSection(i)}
