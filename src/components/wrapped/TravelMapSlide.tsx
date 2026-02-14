@@ -9,6 +9,9 @@ import travelHCM from "@/assets/travel/hochiminh.png";
 import travelNYC from "@/assets/travel/nyc.png";
 import travelOrlando from "@/assets/travel/orlando.png";
 import travelVegas from "@/assets/travel/lasvegas.png";
+import travelHue from "@/assets/travel/huecity.png";
+import travelNarita from "@/assets/travel/narita.png";
+import travelStMartin from "@/assets/travel/saintmartin.png";
 
 interface City {
   name: string;
@@ -40,10 +43,10 @@ const cities: City[] = [
   // International
   { name: "Cabo San Lucas", px: 15, py: 48, international: true, image: travelCabo },
   { name: "Huatulco", px: 17.5, py: 52, international: true },
-  { name: "Saint Martin", px: 29, py: 50, international: true },
+  { name: "Saint Martin", px: 29, py: 50, international: true, image: travelStMartin },
   { name: "Anguilla", px: 29.2, py: 49.5, international: true },
-  { name: "Narita", px: 82, py: 36, international: true },
-  { name: "Hue City", px: 76, py: 50, international: true },
+  { name: "Narita", px: 82, py: 36, international: true, image: travelNarita },
+  { name: "Hue City", px: 76, py: 50, international: true, image: travelHue },
   { name: "Da Nang", px: 76.5, py: 51, international: true },
   { name: "Dalat", px: 76.5, py: 54, international: true },
   { name: "Nha Trang", px: 77, py: 53, international: true },
