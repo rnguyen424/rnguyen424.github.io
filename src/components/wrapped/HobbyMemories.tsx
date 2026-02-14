@@ -2,7 +2,16 @@ import HobbySlide from "./HobbySlide";
 import hobbyClimbing from "@/assets/hobby-climbing.jpg";
 import hobbyClimbing2 from "@/assets/hobby-climbing-2.jpg";
 import hobbyClimbing3 from "@/assets/hobby-climbing-3.jpg";
+import hobbyClimbing4 from "@/assets/hobby-climbing-4.jpg";
+import hobbyClimbing5 from "@/assets/hobby-climbing-5.jpg";
+import hobbyClimbing6 from "@/assets/hobby-climbing-6.jpg";
+import hobbyClimbing7 from "@/assets/hobby-climbing-7.jpg";
+import hobbyClimbing8 from "@/assets/hobby-climbing-8.jpg";
+import hobbyClimbing9 from "@/assets/hobby-climbing-9.jpg";
+import hobbyClimbing10 from "@/assets/hobby-climbing-10.png";
 import hobbyFitnessBike from "@/assets/hobby-fitness-bike.jpg";
+import hobbyFitnessBike2 from "@/assets/hobby-fitness-bike2.png";
+import hobbyFitnessBike3 from "@/assets/hobby-fitness-bike3.png";
 import hobbyFitnessGym from "@/assets/hobby-fitness-gym.jpg";
 import cardGengar from "@/assets/card-collecting/gengar.jpg";
 import cardPikachu from "@/assets/card-collecting/pikachu.jpg";
@@ -14,11 +23,9 @@ import hobbyFood from "@/assets/food/hobby-food.jpg";
 import hobbyFood2 from "@/assets/food/hobby-food-2.jpg";
 import hobbyFood3 from "@/assets/food/hobby-food-3.jpg";
 import hobbyFood4 from "@/assets/food/hobby-food-4.jpg";
-import hobbyFood5 from "@/assets/food/hobby-food-5.jpg";
 import hobbyFood6 from "@/assets/food/hobby-food-6.jpg";
 import hobbyFood7 from "@/assets/food/hobby-food-7.jpg";
 import hobbyFood8 from "@/assets/food/hobby-food-8.jpg";
-import hobbyFood9 from "@/assets/food/hobby-food-9.jpg";
 import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
@@ -33,7 +40,7 @@ const hobbies = [
     title: "Fitness Freaks",
     subtitle: "Gym · Climbing · Biking",
     description: "From crushing PRs at the gym to sending routes on the wall and biking through golden trails — we push each other to be stronger every single day.",
-    images: [hobbyClimbing, hobbyFitnessGym, hobbyFitnessBike, hobbyClimbing2, hobbyClimbing3],
+    images: [hobbyClimbing, hobbyFitnessGym, hobbyFitnessBike, hobbyClimbing2, hobbyClimbing3, hobbyClimbing4, hobbyClimbing5, hobbyClimbing6, hobbyClimbing7, hobbyClimbing8, hobbyClimbing9, hobbyClimbing10, hobbyFitnessBike2, hobbyFitnessBike3],
     videos: [],
     bgClass: "hobby-bg-fitness",
     textGradient: "text-gradient-primary",
