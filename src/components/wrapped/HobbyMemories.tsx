@@ -105,7 +105,7 @@ const hobbies = [
     title: "Our People",
     subtitle: "Family & Loved Ones",
     description: "The ones who raised us, the ones who cheer us on — every family gathering, holiday, and group hug makes this journey even sweeter.",
-    images: [hobbyFamily, hobbyFamily2, hobbyFamily3, hobbyFamily4],
+    images: [family1, family2, family3, family4, family5, family6, family7, family8, family9, family10],
     videos: [],
     bgClass: "hobby-bg-family",
     textGradient: "text-gradient-golden",
