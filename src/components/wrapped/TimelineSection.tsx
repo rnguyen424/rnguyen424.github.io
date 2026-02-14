@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import covidMuseum from "@/assets/timeline/covid-museum.png";
 import collegeHalloween from "@/assets/timeline/college-halloween.png";
 import firstConcert from "@/assets/timeline/first-concert.png";
@@ -34,9 +36,43 @@ const milestones = [
   { date: "Feb 2026", title: "Time to Move to H-Town", desc: "A brand new chapter begins", gradient: "gradient-warm", image: htown },
 ];
 
+const AUTO_ADVANCE_MS = 4000;
+
 const TimelineSection = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const go = useCallback((idx: number) => {
+    setDirection(idx > current ? 1 : -1);
+    setCurrent(idx);
+  }, [current]);
+
+  const next = useCallback(() => {
+    setDirection(1);
+    setCurrent((c) => (c + 1) % milestones.length);
+  }, []);
+
+  const prev = useCallback(() => {
+    setDirection(-1);
+    setCurrent((c) => (c - 1 + milestones.length) % milestones.length);
+  }, []);
+
+  // Auto-advance
+  useEffect(() => {
+    const timer = setInterval(next, AUTO_ADVANCE_MS);
+    return () => clearInterval(timer);
+  }, [next]);
+
+  const m = milestones[current];
+
+  const variants = {
+    enter: (d: number) => ({ x: d > 0 ? 300 : -300, opacity: 0, scale: 0.9 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (d: number) => ({ x: d > 0 ? -300 : 300, opacity: 0, scale: 0.9 }),
+  };
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start py-12 px-4 overflow-y-auto">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4">
       {/* Animated background */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -57,12 +93,13 @@ const TimelineSection = () => {
         <div className="absolute inset-0 opacity-[0.02]" style={{ backgroundImage: 'repeating-linear-gradient(45deg, hsl(var(--muted-foreground)), hsl(var(--muted-foreground)) 1px, transparent 1px, transparent 80px)' }} />
       </div>
 
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-8"
+        className="text-center mb-6 relative z-10"
       >
         <p className="text-sm font-body uppercase tracking-[0.3em] text-muted-foreground mb-2">
           Our Greatest Hits
@@ -72,52 +109,94 @@ const TimelineSection = () => {
         </h2>
       </motion.div>
 
-      <div className="max-w-4xl w-full mx-auto relative pb-12">
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border" />
-
-        {milestones.map((milestone, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-20px" }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
-            className={`relative flex items-start gap-4 mb-6 ${
-              i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            }`}
-          >
-            <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10">
-              <div className={`w-3 h-3 rounded-full ${milestone.gradient}`} />
-            </div>
-
-            <div className={`ml-10 md:ml-0 md:w-[calc(50%-1.5rem)] ${i % 2 === 0 ? "md:text-right md:pr-6" : "md:text-left md:pl-6 md:ml-auto"}`}>
-              <span className={`inline-block text-[10px] font-bold font-body uppercase tracking-widest px-2 py-0.5 rounded-full ${milestone.gradient} text-primary-foreground mb-1`}>
-                {milestone.date}
-              </span>
-              <h3 className="font-display text-base md:text-lg font-bold text-foreground leading-tight mb-0.5">
-                {milestone.title}
-              </h3>
-              <p className="font-body text-xs text-muted-foreground mb-2">{milestone.desc}</p>
-              {milestone.image && (
+      {/* Timeline progress bar */}
+      <div className="relative z-10 w-full max-w-2xl mb-6">
+        <div className="flex items-center justify-between gap-0.5">
+          {milestones.map((ms, i) => (
+            <button
+              key={i}
+              onClick={() => go(i)}
+              className="flex-1 group relative"
+            >
+              <div
+                className={`h-1 rounded-full transition-all duration-300 ${
+                  i <= current ? ms.gradient : "bg-muted-foreground/20"
+                }`}
+              />
+              {i === current && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  className="mt-1"
-                >
-                  <img
-                    src={milestone.image}
-                    alt={milestone.title}
-                    className="w-full max-w-[200px] aspect-square object-cover object-top rounded-lg border border-border/30 shadow-lg"
-                    style={{ display: "inline-block" }}
-                  />
-                </motion.div>
+                  layoutId="timeline-dot"
+                  className={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full ${ms.gradient} border-2 border-background shadow-lg`}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                />
               )}
-            </div>
-          </motion.div>
-        ))}
+            </button>
+          ))}
+        </div>
+        <div className="flex justify-between mt-2">
+          <span className="text-[10px] font-body text-muted-foreground">{milestones[0].date}</span>
+          <span className="text-[10px] font-body text-muted-foreground">{milestones[milestones.length - 1].date}</span>
+        </div>
       </div>
+
+      {/* Card carousel */}
+      <div className="relative z-10 w-full max-w-lg flex items-center justify-center" style={{ minHeight: 420 }}>
+        {/* Prev button */}
+        <button
+          onClick={prev}
+          className="absolute left-0 md:-left-16 z-20 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5 text-foreground" />
+        </button>
+
+        <AnimatePresence mode="wait" custom={direction}>
+          <motion.div
+            key={current}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="w-full text-center"
+          >
+            {/* Image */}
+            {m.image && (
+              <div className="mb-4 flex justify-center">
+                <img
+                  src={m.image}
+                  alt={m.title}
+                  className="w-64 h-64 md:w-72 md:h-72 object-cover object-top rounded-2xl border border-border/30 shadow-2xl"
+                />
+              </div>
+            )}
+
+            {/* Date badge */}
+            <span className={`inline-block text-xs font-bold font-body uppercase tracking-widest px-3 py-1 rounded-full ${m.gradient} text-primary-foreground mb-3`}>
+              {m.date}
+            </span>
+
+            {/* Title & desc */}
+            <h3 className="font-display text-2xl md:text-3xl font-black text-foreground leading-tight mb-1">
+              {m.title}
+            </h3>
+            <p className="font-body text-sm text-muted-foreground">{m.desc}</p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Next button */}
+        <button
+          onClick={next}
+          className="absolute right-0 md:-right-16 z-20 p-2 rounded-full bg-muted/60 backdrop-blur-sm hover:bg-muted transition-colors"
+        >
+          <ChevronRight className="w-5 h-5 text-foreground" />
+        </button>
+      </div>
+
+      {/* Counter */}
+      <p className="relative z-10 mt-4 text-xs font-body text-muted-foreground">
+        {current + 1} / {milestones.length}
+      </p>
     </section>
   );
 };
