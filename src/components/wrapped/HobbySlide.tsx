@@ -541,13 +541,13 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
               <div className="w-full overflow-hidden mb-3 relative z-10">
                 <motion.div
                   className="flex gap-3"
-                  animate={{ x: [0, -(images.length * (280 + 12))] }}
+                  animate={{ x: [0, -(images.length * (360 + 12))] }}
                   transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
                 >
                   {duplicated.map((img, i) => (
                     <div
                       key={`r1-${i}`}
-                      className="flex-shrink-0 w-[240px] md:w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
+                      className="flex-shrink-0 w-[300px] md:w-[360px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
                     >
                       <img src={img} alt="" className="w-full h-full object-cover object-top" />
                     </div>
@@ -558,13 +558,13 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
               <div className="w-full overflow-hidden relative z-10">
                 <motion.div
                   className="flex gap-3"
-                  animate={{ x: [-(images.length * (280 + 12)), 0] }}
+                  animate={{ x: [-(images.length * (360 + 12)), 0] }}
                   transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
                 >
                   {duplicated.map((img, i) => (
                     <div
                       key={`r2-${i}`}
-                      className="flex-shrink-0 w-[240px] md:w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
+                      className="flex-shrink-0 w-[300px] md:w-[360px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
                     >
                       <img src={img} alt="" className="w-full h-full object-cover object-top" />
                     </div>
