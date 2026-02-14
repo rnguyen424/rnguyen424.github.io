@@ -1,10 +1,29 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gift, Ticket, Sparkles } from "lucide-react";
 import surpriseImg from "@/assets/surprise-bruno-mars.jpg";
+import brunoMarsTrack from "@/assets/audio/bruno-mars.mp3";
 
 const SurpriseReveal = () => {
   const [phase, setPhase] = useState(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // Play Bruno Mars when the reveal happens (phase 4)
+  useEffect(() => {
+    if (phase === 4 && audioRef.current) {
+      audioRef.current.volume = 0;
+      audioRef.current.play().then(() => {
+        // Fade in
+        const fadeIn = setInterval(() => {
+          if (audioRef.current && audioRef.current.volume < 0.95) {
+            audioRef.current.volume = Math.min(1, audioRef.current.volume + 0.05);
+          } else {
+            clearInterval(fadeIn);
+          }
+        }, 50);
+      }).catch(() => {});
+    }
+  }, [phase]);
 
   useEffect(() => {
     if (phase === 0) {
@@ -27,6 +46,7 @@ const SurpriseReveal = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <audio ref={audioRef} src={brunoMarsTrack} loop preload="auto" />
       {/* Background layers */}
       <div className="absolute inset-0 bg-background" />
       
