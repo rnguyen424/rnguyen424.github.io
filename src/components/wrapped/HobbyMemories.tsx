@@ -92,7 +92,7 @@ const hobbies = [
     title: "Gotta Catch 'Em All",
     subtitle: "Pokémon Card Collecting",
     description: "I'm thankful that you brought back my love for collecting cards from when I was a little boy. I'm happy you enjoy collecting just as much I do now. Our wallets do not however... To more card shows regardless!",
-    images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder, pokemonClouds, ashCrying, wobbuffet],
+    images: [cardCharizard, pokemonClouds, cardPikachu, cardBinder, ashCrying, cardGengar, cardPull, wobbuffet, cardEeveelutions],
     videos: [],
     bgClass: "hobby-bg-pokemon",
     textGradient: "text-gradient-pokemon",
