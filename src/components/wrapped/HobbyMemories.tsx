@@ -15,6 +15,9 @@ import cardPull from "@/assets/card-collecting/card-pull.jpg";
 import cardEeveelutions from "@/assets/card-collecting/eeveelutions.jpg";
 import cardCharizard from "@/assets/card-collecting/charizard.jpg";
 import cardBinder from "@/assets/card-collecting/binder.jpg";
+import pokemonClouds from "@/assets/card-collecting/pokemon-clouds.gif";
+import ashCrying from "@/assets/card-collecting/ash-crying.gif";
+import wobbuffet from "@/assets/card-collecting/wobbuffet.gif";
 import hobbyFood2 from "@/assets/food/hobby-food-2.jpg";
 import hobbyFood3 from "@/assets/food/hobby-food-3.jpg";
 import hobbyFood4 from "@/assets/food/hobby-food-4.jpg";
@@ -89,7 +92,7 @@ const hobbies = [
     title: "Gotta Catch 'Em All",
     subtitle: "Pokémon Card Collecting",
     description: "I'm thankful that you brought back my love for collecting cards from when I was a little boy. I'm happy you enjoy collecting just as much I do now. Our wallets do not however... To more card shows regardless!",
-    images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder],
+    images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder, pokemonClouds, ashCrying, wobbuffet],
     videos: [],
     bgClass: "hobby-bg-pokemon",
     textGradient: "text-gradient-pokemon",
