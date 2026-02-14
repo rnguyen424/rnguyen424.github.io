@@ -33,14 +33,8 @@ const HeroCard = () => {
           <Heart className="w-10 h-10 text-primary-foreground fill-current" />
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-sm font-body uppercase tracking-[0.3em] text-muted-foreground mb-4"
-        >
-          Your Relationship Wrapped
-        </motion.p>
+
+
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
