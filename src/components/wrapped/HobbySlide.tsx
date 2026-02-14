@@ -522,12 +522,19 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
         {/* FOOD SCATTER — Centered grid, all faces visible */}
         {layout === "food-scatter" && (() => {
           const itemStyles = [
-            { colSpan: "col-span-1", rot: -2, pos: "object-top" },
-            { colSpan: "col-span-1", rot: 3, pos: "object-center" },
-            { colSpan: "col-span-1", rot: -1, pos: "object-top" },
-            { colSpan: "col-span-1", rot: 4, pos: "object-top" },
-            { colSpan: "col-span-1", rot: -3, pos: "object-top" },
-            { colSpan: "col-span-1", rot: 2, pos: "object-center" },
+            { rot: -2, pos: "object-top" },
+            { rot: 3, pos: "object-center" },
+            { rot: -1, pos: "object-top" },
+            { rot: 4, pos: "object-top" },
+            { rot: -3, pos: "object-top" },
+            { rot: 2, pos: "object-center" },
+            { rot: -1, pos: "object-top" },
+            { rot: 3, pos: "object-top" },
+            { rot: -2, pos: "object-top" },
+            { rot: 1, pos: "object-top" },
+            { rot: -3, pos: "object-top" },
+            { rot: 4, pos: "object-top" },
+            { rot: -2, pos: "object-top" },
           ];
           return (
             <div className="h-screen flex flex-col items-center justify-center px-4 md:px-10 py-6 overflow-hidden">
@@ -544,7 +551,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                 <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
               </motion.div>
               {/* Image grid — centered, uniform sizing */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-3xl w-full relative z-10">
+              <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 max-w-5xl w-full relative z-10">
                 {images.map((img, i) => {
                   const style = itemStyles[i % itemStyles.length];
                   return (
