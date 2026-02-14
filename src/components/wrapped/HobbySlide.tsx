@@ -9,7 +9,7 @@ interface HobbySlideProps {
   videos?: string[];
   bgClass: string;
   textGradient: string;
-  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid" | "food-scatter";
+  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid" | "food-scatter" | "fitness-grid";
   theme: "fitness" | "pokemon" | "food" | "travel" | "gaming" | "family";
 }
 
@@ -310,7 +310,46 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
 
       <div className="relative z-10 w-full h-full">
 
-        {/* HERO LEFT — Fitness: bold, aggressive, dynamic */}
+        {/* FITNESS GRID — Show all images in a dense grid */}
+        {layout === "fitness-grid" && (
+          <div className="h-screen flex flex-col px-4 md:px-10 py-6 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-3 flex-shrink-0 relative z-30"
+            >
+              <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
+              <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] uppercase ${textGradient}`}>{title}</h2>
+              <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+            </motion.div>
+            <div className="grid grid-cols-3 md:grid-cols-7 gap-1.5 md:gap-2 flex-1 max-h-[75vh] auto-rows-[1fr] relative z-10 overflow-hidden">
+              {images.map((img, i) => {
+                const rots = [-2, 3, -1, 2, -3, 1, -2, 4, -1, 3, -4, 2, -3, 1];
+                const spans = [
+                  "col-span-2 row-span-2", "", "", "col-span-2", "", "", "",
+                  "", "col-span-2", "", "", "", "col-span-2", "",
+                ];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20, rotate: rots[i % rots.length] * 2 }}
+                    whileInView={{ opacity: 1, y: 0, rotate: rots[i % rots.length] }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.04, duration: 0.4, type: "spring", stiffness: 200 }}
+                    whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
+                    className={`${spans[i] || ""} rounded-lg overflow-hidden shadow-xl cursor-pointer`}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {/* HERO LEFT — legacy layout */}
         {layout === "hero-left" && (
           <div className="min-h-screen flex items-center px-6 md:px-16 py-12">
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10 w-full max-w-7xl mx-auto">
