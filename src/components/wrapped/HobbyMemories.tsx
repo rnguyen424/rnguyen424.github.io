@@ -65,6 +65,16 @@ import family17 from "@/assets/family/family17.png";
 import family18 from "@/assets/family/family18.png";
 import family19 from "@/assets/family/family19.png";
 import family20 from "@/assets/family/family20.png";
+import family21 from "@/assets/family/family21.png";
+import family22 from "@/assets/family/family22.png";
+import family23 from "@/assets/family/family23.png";
+import family24 from "@/assets/family/family24.png";
+import family25 from "@/assets/family/family25.jpg";
+import family26 from "@/assets/family/family26.jpg";
+import family27 from "@/assets/family/family27.jpg";
+import family28 from "@/assets/family/family28.jpg";
+import family29 from "@/assets/family/family29.png";
+import family30 from "@/assets/family/family30.png";
 
 const hobbies = [
   {
@@ -115,7 +125,7 @@ const hobbies = [
     title: "Our People",
     subtitle: "Family & Loved Ones",
     description: "The ones who raised us, the ones who cheer us on — every family gathering, holiday, and group hug makes this journey even sweeter.",
-    images: [family1, family2, family3, family4, family5, family6, family7, family8, family9, family10, family11, family12, family13, family14, family15, family16, family17, family18, family19, family20],
+    images: [family1, family2, family3, family4, family5, family6, family7, family8, family9, family10, family11, family12, family13, family14, family15, family16, family17, family18, family19, family20, family21, family22, family23, family24, family25, family26, family27, family28, family29, family30],
     videos: [],
     bgClass: "hobby-bg-family",
     textGradient: "text-gradient-golden",
