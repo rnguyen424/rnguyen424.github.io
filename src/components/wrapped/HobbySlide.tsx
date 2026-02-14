@@ -486,64 +486,65 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
             ...images.map((src) => ({ type: "image" as const, src })),
             ...videos.map((src) => ({ type: "video" as const, src })),
           ];
-          // Scatter positions — intentionally non-uniform
-          const positions = [
-            { top: "2%", left: "1%", w: "w-44 md:w-64", rot: -4, z: 10, span: true },
-            { top: "3%", left: "42%", w: "w-36 md:w-52", rot: 6, z: 15 },
-            { top: "5%", left: "72%", w: "w-32 md:w-48", rot: -2, z: 12 },
-            { top: "32%", left: "8%", w: "w-32 md:w-44", rot: 5, z: 18 },
-            { top: "28%", left: "35%", w: "w-40 md:w-56", rot: -6, z: 20 },
-            { top: "34%", left: "65%", w: "w-36 md:w-50", rot: 3, z: 14 },
-            { top: "58%", left: "2%", w: "w-38 md:w-52", rot: -3, z: 16 },
-            { top: "55%", left: "38%", w: "w-32 md:w-46", rot: 7, z: 11 },
-            { top: "60%", left: "68%", w: "w-36 md:w-52", rot: -5, z: 19 },
-            { top: "78%", left: "15%", w: "w-34 md:w-48", rot: 4, z: 13 },
-            { top: "75%", left: "50%", w: "w-32 md:w-44", rot: -4, z: 17 },
-            { top: "80%", left: "78%", w: "w-30 md:w-40", rot: 6, z: 12 },
+          // Non-uniform grid: varying sizes, slight rotations, staggered
+          const itemStyles = [
+            { colSpan: "col-span-2 row-span-2", rot: -2 },
+            { colSpan: "", rot: 3 },
+            { colSpan: "", rot: -1 },
+            { colSpan: "", rot: 4 },
+            { colSpan: "col-span-2", rot: -3 },
+            { colSpan: "", rot: 2 },
+            { colSpan: "", rot: -4 },
+            { colSpan: "", rot: 5 },
+            { colSpan: "col-span-2", rot: -2 },
+            { colSpan: "", rot: 3 },
+            { colSpan: "", rot: -5 },
+            { colSpan: "", rot: 1 },
           ];
           return (
-            <div className="h-screen relative flex items-center justify-center overflow-hidden">
-              {/* Title overlay */}
+            <div className="h-screen flex flex-col px-4 md:px-10 py-6 overflow-hidden">
+              {/* Title — top, fully visible */}
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="absolute z-30 text-center px-4"
+                transition={{ duration: 0.5 }}
+                className="text-center mb-4 flex-shrink-0 relative z-30"
               >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-2">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-8xl font-black mb-3 leading-[0.9] italic ${textGradient}`}>{title}</h2>
-                <p className="text-sm md:text-base text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
+                <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
+                <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
               </motion.div>
-              {/* Scattered media */}
-              {allMedia.map((media, i) => {
-                const pos = positions[i % positions.length];
-                return (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.6, rotate: pos.rot * 3 }}
-                    whileInView={{ opacity: 1, scale: 1, rotate: pos.rot }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.08, duration: 0.6, type: "spring", stiffness: 120 }}
-                    whileHover={{ scale: 1.12, rotate: 0, zIndex: 40 }}
-                    animate={{
-                      y: [0, (i % 2 === 0 ? -6 : 6), 0],
-                    }}
-                    className={`absolute ${pos.w} aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-2 border-foreground/10 cursor-pointer`}
-                    style={{
-                      top: pos.top,
-                      left: pos.left,
-                      zIndex: pos.z,
-                    }}
-                  >
-                    {media.type === "video" ? (
-                      <video src={media.src} autoPlay muted loop playsInline className="w-full h-full object-cover" />
-                    ) : (
-                      <img src={media.src} alt="" className="w-full h-full object-cover" />
-                    )}
-                  </motion.div>
-                );
-              })}
+              {/* Media grid — non-uniform */}
+              <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 flex-1 max-h-[72vh] auto-rows-fr relative z-10">
+                {allMedia.map((media, i) => {
+                  const style = itemStyles[i % itemStyles.length];
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 30, rotate: style.rot * 2 }}
+                      whileInView={{ opacity: 1, y: 0, rotate: style.rot }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.06, duration: 0.5, type: "spring", stiffness: 150 }}
+                      whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
+                      className={`${style.colSpan} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer min-h-0`}
+                    >
+                      {media.type === "video" ? (
+                        <video
+                          src={media.src}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <img src={media.src} alt="" className="w-full h-full object-cover" />
+                      )}
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           );
         })()}
