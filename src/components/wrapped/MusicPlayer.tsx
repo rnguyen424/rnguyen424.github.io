@@ -30,10 +30,11 @@ const sectionLabels = [
 
 interface MusicPlayerProps {
   currentSection: number;
+  isMuted: boolean;
+  onToggleMute: () => void;
 }
 
-const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
-  const [isMuted, setIsMuted] = useState(true);
+const MusicPlayer = ({ currentSection, isMuted, onToggleMute }: MusicPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [hasInteracted, setHasInteracted] = useState(false);
@@ -42,21 +43,22 @@ const MusicPlayer = ({ currentSection }: MusicPlayerProps) => {
 
   const handleToggleMute = useCallback(() => {
     if (!hasInteracted) setHasInteracted(true);
+    onToggleMute();
 
     if (isMuted) {
-      setIsMuted(false);
+      // Will become unmuted
       if (audioRef.current && currentTrack) {
         audioRef.current.play().catch(() => {});
         setIsPlaying(true);
       }
     } else {
-      setIsMuted(true);
+      // Will become muted
       if (audioRef.current) {
         audioRef.current.pause();
         setIsPlaying(false);
       }
     }
-  }, [isMuted, hasInteracted, currentTrack]);
+  }, [isMuted, hasInteracted, currentTrack, onToggleMute]);
 
   // Switch tracks when section changes
   const prevTrackRef = useRef<string | null>(null);
