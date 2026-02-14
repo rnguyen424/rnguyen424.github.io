@@ -548,11 +548,37 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-center my-4 flex-shrink-0 relative z-30 px-4"
+                className="text-center my-4 flex-shrink-0 relative z-30 px-4 flex items-center justify-center gap-4"
               >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
-                <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
-                <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+                {/* Left dancing emojis */}
+                <div className="hidden md:flex flex-col gap-2 text-2xl">
+                  {["🍔", "🍕", "🌮"].map((emoji, i) => (
+                    <motion.span
+                      key={`l-${i}`}
+                      animate={{ y: [0, -8, 0], rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
+                    >
+                      {emoji}
+                    </motion.span>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
+                  <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
+                  <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+                </div>
+                {/* Right dancing emojis */}
+                <div className="hidden md:flex flex-col gap-2 text-2xl">
+                  {["🍜", "🍩", "🧋"].map((emoji, i) => (
+                    <motion.span
+                      key={`r-${i}`}
+                      animate={{ y: [0, -8, 0], rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.3 }}
+                    >
+                      {emoji}
+                    </motion.span>
+                  ))}
+                </div>
               </motion.div>
               {/* Row 2 — scrolls right (reverse) */}
               <div className="w-full overflow-hidden relative z-10">
