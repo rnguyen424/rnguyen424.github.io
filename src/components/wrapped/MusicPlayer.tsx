@@ -7,6 +7,7 @@ import pokemonTrack from "@/assets/audio/pokemon.mp3";
 import clarityTrack from "@/assets/audio/clarity.mp3";
 import laufeyTrack from "@/assets/audio/laufey-from-the-start.mp3";
 import ouiTrack from "@/assets/audio/oui.mp3";
+import szaSaturn from "@/assets/audio/sza-saturn.mp3";
 
 // Map each section index to its audio source.
 const sectionTracks: (string | null)[] = [
@@ -16,7 +17,7 @@ const sectionTracks: (string | null)[] = [
   clarityTrack,   // 3 - Fitness
   pokemonTrack,   // 4 - Pokemon
   laufeyTrack,    // 5 - Food
-  null,           // 6 - Travel
+  szaSaturn,      // 6 - Travel
   null,           // 7 - Family
   ouiTrack,       // 8 - ClosingCard
   null,           // 9 - Surprise
