@@ -108,9 +108,9 @@ const TravelMapSlide = () => {
         </motion.div>
 
         {/* Map container */}
-        <div className="relative w-full max-w-5xl flex-1 min-h-0 flex items-center justify-center -mt-6">
+        <div className="relative w-full max-w-5xl flex-1 min-h-0 flex items-center justify-center -mt-10 -ml-4">
           {/* World map image */}
-          <div className="relative w-full" style={{ maxHeight: "60vh" }}>
+          <div className="relative w-full" style={{ maxHeight: "55vh" }}>
             <img
               src={worldMap}
               alt="World Map"
