@@ -80,7 +80,7 @@ const hobbies = [
   {
     title: "Fitness Freaks",
     subtitle: "Gym · Climbing · Biking",
-    description: "From crushing PRs at the gym to sending routes on the wall and biking through golden trails — we push each other to be stronger every single day.",
+    description: "We've been through a lot of fitness phases. I wanted to note I'm so proud how far you have came in your journey from climbing V1s to benching the bar. I am also so happy I picked up biking! We'll continue to push each other to be stronger every single day!",
     images: [climbing4, climbing5, climbing6, climbing7, climbing8, climbing9, climbing10, bike2, bike3],
     videos: [],
     bgClass: "hobby-bg-fitness",
@@ -91,7 +91,7 @@ const hobbies = [
   {
     title: "Gotta Catch 'Em All",
     subtitle: "Pokémon Card Collecting",
-    description: "Opening packs together, chasing rare pulls, and building our collection one holographic card at a time. The thrill never gets old.",
+    description: "I'm thankful that you brought back my love for collecting cards from when I was a little boy. I'm happy you enjoy collecting just as much I do now. Our wallets do not however... To more card shows regardless!",
     images: [cardCharizard, cardGengar, cardPikachu, cardPull, cardEeveelutions, cardBinder],
     videos: [],
     bgClass: "hobby-bg-pokemon",
@@ -113,7 +113,7 @@ const hobbies = [
   {
     title: "Adventure Awaits",
     subtitle: "Travelling the World",
-    description: "Sunsets in new cities, hiking trails we'll never forget, and stamps in our passports that tell our story.",
+    description: "We've been to 4 countries and over 25 cities. I can't wait to see more of the world with you.",
     images: [hobbyTravel, hobbyTravel3, hobbyTravel2, hobbyTravel4],
     videos: [],
     bgClass: "hobby-bg-travel",
