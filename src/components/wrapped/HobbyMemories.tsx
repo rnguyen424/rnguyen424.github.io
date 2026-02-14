@@ -1,25 +1,24 @@
 import HobbySlide from "./HobbySlide";
-import hobbyClimbing from "@/assets/hobby-climbing.jpg";
-import hobbyClimbing2 from "@/assets/hobby-climbing-2.jpg";
-import hobbyClimbing3 from "@/assets/hobby-climbing-3.jpg";
-import hobbyClimbing4 from "@/assets/hobby-climbing-4.jpg";
-import hobbyClimbing5 from "@/assets/hobby-climbing-5.jpg";
-import hobbyClimbing6 from "@/assets/hobby-climbing-6.jpg";
-import hobbyClimbing7 from "@/assets/hobby-climbing-7.jpg";
-import hobbyClimbing8 from "@/assets/hobby-climbing-8.jpg";
-import hobbyClimbing9 from "@/assets/hobby-climbing-9.jpg";
-import hobbyClimbing10 from "@/assets/hobby-climbing-10.png";
-import hobbyFitnessBike from "@/assets/hobby-fitness-bike.jpg";
-import hobbyFitnessBike2 from "@/assets/hobby-fitness-bike2.png";
-import hobbyFitnessBike3 from "@/assets/hobby-fitness-bike3.png";
-import hobbyFitnessGym from "@/assets/hobby-fitness-gym.jpg";
+import climbing1 from "@/assets/fitness/climbing-1.jpg";
+import climbing2 from "@/assets/fitness/climbing-2.jpg";
+import climbing3 from "@/assets/fitness/climbing-3.jpg";
+import climbing4 from "@/assets/fitness/climbing-4.jpg";
+import climbing5 from "@/assets/fitness/climbing-5.jpg";
+import climbing6 from "@/assets/fitness/climbing-6.jpg";
+import climbing7 from "@/assets/fitness/climbing-7.jpg";
+import climbing8 from "@/assets/fitness/climbing-8.jpg";
+import climbing9 from "@/assets/fitness/climbing-9.jpg";
+import climbing10 from "@/assets/fitness/climbing-10.png";
+import bike1 from "@/assets/fitness/bike-1.jpg";
+import bike2 from "@/assets/fitness/bike-2.png";
+import bike3 from "@/assets/fitness/bike-3.png";
+import gym1 from "@/assets/fitness/gym-1.jpg";
 import cardGengar from "@/assets/card-collecting/gengar.jpg";
 import cardPikachu from "@/assets/card-collecting/pikachu.jpg";
 import cardPull from "@/assets/card-collecting/card-pull.jpg";
 import cardEeveelutions from "@/assets/card-collecting/eeveelutions.jpg";
 import cardCharizard from "@/assets/card-collecting/charizard.jpg";
 import cardBinder from "@/assets/card-collecting/binder.jpg";
-import hobbyFood from "@/assets/food/hobby-food.jpg";
 import hobbyFood2 from "@/assets/food/hobby-food-2.jpg";
 import hobbyFood3 from "@/assets/food/hobby-food-3.jpg";
 import hobbyFood4 from "@/assets/food/hobby-food-4.jpg";
@@ -40,11 +39,11 @@ const hobbies = [
     title: "Fitness Freaks",
     subtitle: "Gym · Climbing · Biking",
     description: "From crushing PRs at the gym to sending routes on the wall and biking through golden trails — we push each other to be stronger every single day.",
-    images: [hobbyClimbing, hobbyFitnessGym, hobbyFitnessBike, hobbyClimbing2, hobbyClimbing3, hobbyClimbing4, hobbyClimbing5, hobbyClimbing6, hobbyClimbing7, hobbyClimbing8, hobbyClimbing9, hobbyClimbing10, hobbyFitnessBike2, hobbyFitnessBike3],
+    images: [climbing1, gym1, bike1, climbing2, climbing3, climbing4, climbing5, climbing6, climbing7, climbing8, climbing9, climbing10, bike2, bike3],
     videos: [],
     bgClass: "hobby-bg-fitness",
     textGradient: "text-gradient-primary",
-    layout: "hero-left" as const,
+    layout: "fitness-grid" as const,
     theme: "fitness" as const,
   },
   {
@@ -62,7 +61,7 @@ const hobbies = [
     title: "Foodies For Life",
     subtitle: "We Just Love to Eat!",
     description: "From hidden gem restaurants to late-night feasts — food is our love language. Every bite is a memory, every meal an adventure.",
-    images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood6, hobbyFood7, hobbyFood8],
+    images: [hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood6, hobbyFood7, hobbyFood8],
     videos: [],
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",
