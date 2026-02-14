@@ -6,9 +6,10 @@ interface HobbySlideProps {
   subtitle: string;
   description: string;
   images: string[];
+  videos?: string[];
   bgClass: string;
   textGradient: string;
-  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid";
+  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid" | "food-scatter";
   theme: "fitness" | "pokemon" | "food" | "travel" | "gaming" | "family";
 }
 
@@ -114,45 +115,57 @@ const PokemonAtmosphere = () => (
   </>
 );
 
-const FoodAtmosphere = () => (
-  <>
-    {/* Warm steam/smoke rising effect */}
-    {[...Array(5)].map((_, i) => (
+const FoodAtmosphere = () => {
+  const dancingFoods = ["🍕", "🍔", "🍜", "🍣", "🧁", "🌮", "🍩", "🍦", "🥟", "🍗", "🧋", "🍰"];
+  return (
+    <>
+      {/* Dancing food characters */}
+      {dancingFoods.map((emoji, i) => (
+        <motion.div
+          key={`food-dance-${i}`}
+          animate={{
+            y: [0, -20, 0, -10, 0],
+            x: [0, (i % 2 === 0 ? 8 : -8), 0],
+            rotate: [0, (i % 2 === 0 ? 15 : -15), 0, (i % 2 === 0 ? -10 : 10), 0],
+            scale: [1, 1.15, 1, 1.1, 1],
+          }}
+          transition={{
+            duration: 2 + (i % 4) * 0.5,
+            delay: i * 0.3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute pointer-events-none select-none z-0"
+          style={{
+            left: `${3 + (i % 6) * 16}%`,
+            top: `${8 + Math.floor(i / 6) * 65}%`,
+            fontSize: `${32 + (i % 3) * 12}px`,
+            opacity: 0.25,
+          }}
+        >
+          {emoji}
+        </motion.div>
+      ))}
+      {/* Warm radial glow */}
       <motion.div
-        key={i}
-        animate={{
-          y: [0, -80, -160],
-          opacity: [0, 0.12, 0],
-          x: [0, (i % 2 === 0 ? 15 : -15), 0],
-        }}
-        transition={{ duration: 4 + i, delay: i * 0.8, repeat: Infinity }}
-        className="absolute bottom-1/3 w-20 h-40 rounded-full bg-foreground/5 blur-xl"
-        style={{ left: `${20 + i * 15}%` }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.12, 0.2, 0.12] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[180px]"
+        style={{ background: "radial-gradient(circle, hsl(30, 100%, 55%), hsl(340, 80%, 50%), transparent)" }}
       />
-    ))}
-    {/* Organic blob shapes */}
-    <motion.div
-      animate={{ rotate: [0, 360] }}
-      transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-      className="absolute -top-32 -right-32 w-96 h-96 opacity-10"
-      style={{
-        borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
-        background: "hsl(30, 100%, 55%)",
-      }}
-    />
-    <motion.div
-      animate={{ rotate: [360, 0] }}
-      transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-      className="absolute -bottom-24 -left-24 w-72 h-72 opacity-10"
-      style={{
-        borderRadius: "40% 60% 70% 30% / 40% 70% 30% 60%",
-        background: "hsl(340, 80%, 55%)",
-      }}
-    />
-    {/* Dotted accent circles */}
-    <div className="absolute top-16 right-20 w-24 h-24 rounded-full border-2 border-dashed border-secondary/15" />
-  </>
-);
+      {/* Organic blob shapes */}
+      <motion.div
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+        className="absolute -top-32 -right-32 w-96 h-96 opacity-10"
+        style={{
+          borderRadius: "60% 40% 30% 70% / 60% 30% 70% 40%",
+          background: "hsl(30, 100%, 55%)",
+        }}
+      />
+    </>
+  );
+};
 
 const TravelAtmosphere = () => (
   <>
@@ -282,7 +295,7 @@ const atmospheres: Record<string, () => ReactNode> = {
   family: FamilyAtmosphere,
 };
 
-const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradient, layout, theme }: HobbySlideProps) => {
+const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass, textGradient, layout, theme }: HobbySlideProps) => {
   const Atmosphere = atmospheres[theme];
 
   return (
@@ -467,7 +480,74 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
           </div>
         )}
 
-        {/* FULL BLEED — Travel: cinematic, immersive, epic */}
+        {/* FOOD SCATTER — Non-uniform scattered layout with videos */}
+        {layout === "food-scatter" && (() => {
+          const allMedia = [
+            ...images.map((src) => ({ type: "image" as const, src })),
+            ...videos.map((src) => ({ type: "video" as const, src })),
+          ];
+          // Scatter positions — intentionally non-uniform
+          const positions = [
+            { top: "2%", left: "1%", w: "w-44 md:w-64", rot: -4, z: 10, span: true },
+            { top: "3%", left: "42%", w: "w-36 md:w-52", rot: 6, z: 15 },
+            { top: "5%", left: "72%", w: "w-32 md:w-48", rot: -2, z: 12 },
+            { top: "32%", left: "8%", w: "w-32 md:w-44", rot: 5, z: 18 },
+            { top: "28%", left: "35%", w: "w-40 md:w-56", rot: -6, z: 20 },
+            { top: "34%", left: "65%", w: "w-36 md:w-50", rot: 3, z: 14 },
+            { top: "58%", left: "2%", w: "w-38 md:w-52", rot: -3, z: 16 },
+            { top: "55%", left: "38%", w: "w-32 md:w-46", rot: 7, z: 11 },
+            { top: "60%", left: "68%", w: "w-36 md:w-52", rot: -5, z: 19 },
+            { top: "78%", left: "15%", w: "w-34 md:w-48", rot: 4, z: 13 },
+            { top: "75%", left: "50%", w: "w-32 md:w-44", rot: -4, z: 17 },
+            { top: "80%", left: "78%", w: "w-30 md:w-40", rot: 6, z: 12 },
+          ];
+          return (
+            <div className="h-screen relative flex items-center justify-center overflow-hidden">
+              {/* Title overlay */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.3 }}
+                className="absolute z-30 text-center px-4"
+              >
+                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-2">{subtitle}</p>
+                <h2 className={`font-display text-5xl md:text-8xl font-black mb-3 leading-[0.9] italic ${textGradient}`}>{title}</h2>
+                <p className="text-sm md:text-base text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+              </motion.div>
+              {/* Scattered media */}
+              {allMedia.map((media, i) => {
+                const pos = positions[i % positions.length];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.6, rotate: pos.rot * 3 }}
+                    whileInView={{ opacity: 1, scale: 1, rotate: pos.rot }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08, duration: 0.6, type: "spring", stiffness: 120 }}
+                    whileHover={{ scale: 1.12, rotate: 0, zIndex: 40 }}
+                    animate={{
+                      y: [0, (i % 2 === 0 ? -6 : 6), 0],
+                    }}
+                    className={`absolute ${pos.w} aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-2 border-foreground/10 cursor-pointer`}
+                    style={{
+                      top: pos.top,
+                      left: pos.left,
+                      zIndex: pos.z,
+                    }}
+                  >
+                    {media.type === "video" ? (
+                      <video src={media.src} autoPlay muted loop playsInline className="w-full h-full object-cover" />
+                    ) : (
+                      <img src={media.src} alt="" className="w-full h-full object-cover" />
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+          );
+        })()}
+
         {layout === "full-bleed" && (
           <div className="min-h-screen relative flex items-end md:items-center">
             <motion.div
