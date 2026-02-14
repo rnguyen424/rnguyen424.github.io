@@ -8,6 +8,13 @@ import destin from "@/assets/timeline/destin.png";
 import lollapalooza from "@/assets/timeline/lollapalooza.png";
 import mexico from "@/assets/timeline/mexico.png";
 import disney from "@/assets/timeline/disney.png";
+import ryanGrad from "@/assets/timeline/ryan-grad.png";
+import beabadoobee from "@/assets/timeline/beabadoobee.png";
+import syGrad from "@/assets/timeline/sy-grad.png";
+import vietnam from "@/assets/timeline/vietnam.jpg";
+import cardShow from "@/assets/timeline/card-show.png";
+import austin from "@/assets/timeline/austin.png";
+import htown from "@/assets/timeline/htown.png";
 
 const milestones = [
   { date: "Aug 2020", title: "COVID Year", desc: "First Museum Visit!", gradient: "gradient-primary", image: covidMuseum },
@@ -17,14 +24,14 @@ const milestones = [
   { date: "Jul 2023", title: "First BIG Family Trip", desc: "Destin FL", gradient: "gradient-primary", image: destin },
   { date: "Aug 2023", title: "First Music Festival", desc: "Lollapalooza", gradient: "gradient-cool", image: lollapalooza },
   { date: "Mar 2024", title: "First Trip Outside the US", desc: "Huatulco Mexico!", gradient: "gradient-warm", image: mexico },
-  { date: "May 2024", title: "Ryan College Graduation", desc: "Time to work!", gradient: "gradient-golden" },
+  { date: "May 2024", title: "Ryan College Graduation", desc: "Time to work!", gradient: "gradient-golden", image: ryanGrad },
   { date: "Dec 2024", title: "Disney Trip!", desc: "The happiest place on earth", gradient: "gradient-primary", image: disney },
-  { date: "Apr 2025", title: "Beabadoobee Round 2!", desc: "Dallas Trip", gradient: "gradient-cool" },
-  { date: "May 2025", title: "Sy College & EMT Graduation!", desc: "Double celebration", gradient: "gradient-warm" },
-  { date: "Jul 2025", title: "Vietnam Trip", desc: "Back to the motherland!", gradient: "gradient-golden" },
-  { date: "Dec 2025", title: "First Card Show!", desc: "Collect-A-Con San Antonio", gradient: "gradient-primary" },
-  { date: "Jan 2026", title: "On the Hunt to Move", desc: "Houston vs. Austin", gradient: "gradient-cool" },
-  { date: "Feb 2026", title: "Time to Move to H-Town", desc: "A brand new chapter begins", gradient: "gradient-warm" },
+  { date: "Apr 2025", title: "Beabadoobee Round 2!", desc: "Dallas Trip", gradient: "gradient-cool", image: beabadoobee },
+  { date: "May 2025", title: "Sy College & EMT Graduation!", desc: "Double celebration", gradient: "gradient-warm", image: syGrad },
+  { date: "Jul 2025", title: "Vietnam Trip", desc: "Back to the motherland!", gradient: "gradient-golden", image: vietnam },
+  { date: "Dec 2025", title: "First Card Show!", desc: "Collect-A-Con San Antonio", gradient: "gradient-primary", image: cardShow },
+  { date: "Jan 2026", title: "On the Hunt to Move", desc: "Houston vs. Austin", gradient: "gradient-cool", image: austin },
+  { date: "Feb 2026", title: "Time to Move to H-Town", desc: "A brand new chapter begins", gradient: "gradient-warm", image: htown },
 ];
 
 const TimelineSection = () => {
