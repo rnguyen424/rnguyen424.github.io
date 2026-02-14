@@ -428,50 +428,35 @@ const HobbySlide = ({ title, subtitle, description, images, bgClass, textGradien
           </div>
         )}
 
-        {/* OVERLAP RIGHT — Food: warm, organic, inviting */}
+        {/* OVERLAP RIGHT — Food/Family: warm, organic, inviting */}
         {layout === "overlap-right" && (
-          <div className="min-h-screen flex items-center px-6 md:px-16 py-12">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full max-w-7xl mx-auto">
+          <div className="h-screen flex flex-col justify-center px-4 md:px-12 py-6 overflow-hidden">
+            <div className="max-w-6xl mx-auto w-full flex flex-col h-full justify-center">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className="w-full md:w-2/5"
+                transition={{ duration: 0.5 }}
+                className="mb-4 flex-shrink-0"
               >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-2">{subtitle}</p>
-                <h2 className={`font-display text-5xl md:text-7xl font-black mb-4 leading-[0.95] italic ${textGradient}`}>{title}</h2>
-                <p className="text-sm md:text-base text-foreground/70 font-body leading-relaxed">{description}</p>
-                {/* Recipe card accent */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-6 px-5 py-3 rounded-xl bg-foreground/5 border border-foreground/10 inline-block"
-                >
-                  <span className="text-xs font-body text-foreground/50 italic">Our secret ingredient: love 🤍</span>
-                </motion.div>
+                <p className="text-xs md:text-sm font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
+                <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.95] italic ${textGradient}`}>{title}</h2>
+                <p className="text-xs md:text-sm text-foreground/70 font-body max-w-lg">{description}</p>
               </motion.div>
-              <div className="w-full md:w-3/5 relative min-h-[350px] md:min-h-[450px]">
-                {images.slice(0, 4).map((img, i) => {
-                  const configs = [
-                    { top: "5%", left: "0%", w: "w-52 md:w-72", rot: -3, z: 15 },
-                    { top: "10%", left: "35%", w: "w-44 md:w-60", rot: 5, z: 20 },
-                    { top: "40%", left: "10%", w: "w-40 md:w-56", rot: -5, z: 10 },
-                    { top: "35%", left: "50%", w: "w-36 md:w-48", rot: 4, z: 25 },
-                  ];
-                  const c = configs[i];
+              <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-3 flex-1 max-h-[65vh]">
+                {images.map((img, i) => {
+                  const rotations = [-2, 3, -1, 2, -3, 1, -2, 3, -1, 2];
                   return (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 40, rotate: c.rot * 2 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: c.rot }}
+                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.12, duration: 0.6 }}
-                      whileHover={{ scale: 1.06, rotate: 0, zIndex: 30 }}
-                      className={`absolute ${c.w} aspect-[4/3] rounded-[1.5rem] overflow-hidden shadow-2xl border-2 border-foreground/5 cursor-pointer`}
-                      style={{ top: c.top, left: c.left, zIndex: c.z }}
+                      transition={{ delay: i * 0.06, duration: 0.5 }}
+                      whileHover={{ scale: 1.08, rotate: 0, zIndex: 10 }}
+                      className={`rounded-xl overflow-hidden shadow-xl border-2 border-foreground/5 cursor-pointer ${
+                        i === 0 ? "col-span-2 row-span-2" : ""
+                      }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-cover" />
                     </motion.div>
