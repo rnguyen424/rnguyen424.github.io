@@ -66,7 +66,8 @@ const TravelMapSlide = () => {
   const [showPopup, setShowPopup] = useState<string | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    const advance = () => {
       setCurrentStop(prev => {
         const next = (prev + 1) % routeCities.length;
         setVisitedStops(v => {
@@ -76,14 +77,18 @@ const TravelMapSlide = () => {
         const city = routeCities[next];
         if (city.image) {
           setShowPopup(city.name);
-          setTimeout(() => setShowPopup(null), 2200);
+          setTimeout(() => setShowPopup(null), 2500);
+          // Wait longer on cities with popups so the image is visible
+          timeout = setTimeout(advance, 3200);
+        } else {
+          timeout = setTimeout(advance, 1800);
         }
         return next;
       });
-    }, 1800);
-
+    };
+    timeout = setTimeout(advance, 1800);
     setVisitedStops([0]);
-    return () => clearInterval(interval);
+    return () => clearTimeout(timeout);
   }, []);
 
   const currentCity = routeCities[currentStop];
