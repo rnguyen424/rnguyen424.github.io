@@ -519,55 +519,57 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
           </div>
         )}
 
-        {/* FOOD SCATTER — Centered grid, all faces visible */}
+        {/* FOOD SCATTER — Auto-scrolling carousel */}
         {layout === "food-scatter" && (() => {
-          const itemStyles = [
-            { rot: -2, pos: "object-top" },
-            { rot: 3, pos: "object-center" },
-            { rot: -1, pos: "object-top" },
-            { rot: 4, pos: "object-top" },
-            { rot: -3, pos: "object-top" },
-            { rot: 2, pos: "object-center" },
-            { rot: -1, pos: "object-top" },
-            { rot: 3, pos: "object-top" },
-            { rot: -2, pos: "object-top" },
-            { rot: 1, pos: "object-top" },
-            { rot: -3, pos: "object-top" },
-            { rot: 4, pos: "object-top" },
-            { rot: -2, pos: "object-top" },
-          ];
+          // Duplicate images for seamless infinite loop
+          const duplicated = [...images, ...images];
           return (
-            <div className="h-screen flex flex-col items-center justify-center px-4 md:px-10 py-6 overflow-hidden">
-              {/* Title — top, fully visible */}
+            <div className="h-screen flex flex-col items-center justify-center overflow-hidden">
+              {/* Title */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-center mb-6 flex-shrink-0 relative z-30"
+                className="text-center mb-6 flex-shrink-0 relative z-30 px-4"
               >
                 <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
                 <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
                 <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
               </motion.div>
-              {/* Image grid — centered, uniform sizing */}
-              <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-3 max-w-5xl w-full relative z-10">
-                {images.map((img, i) => {
-                  const style = itemStyles[i % itemStyles.length];
-                  return (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 30, rotate: style.rot * 2 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: style.rot }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.06, duration: 0.5, type: "spring", stiffness: 150 }}
-                      whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
-                      className="rounded-xl overflow-hidden shadow-xl cursor-pointer aspect-[4/3]"
+              {/* Row 1 — scrolls left */}
+              <div className="w-full overflow-hidden mb-3 relative z-10">
+                <motion.div
+                  className="flex gap-3"
+                  animate={{ x: [0, -(images.length * (280 + 12))] }}
+                  transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
+                >
+                  {duplicated.map((img, i) => (
+                    <div
+                      key={`r1-${i}`}
+                      className="flex-shrink-0 w-[240px] md:w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
                     >
-                      <img src={img} alt="" className={`w-full h-full object-cover ${style.pos}`} />
-                    </motion.div>
-                  );
-                })}
+                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+              {/* Row 2 — scrolls right (reverse) */}
+              <div className="w-full overflow-hidden relative z-10">
+                <motion.div
+                  className="flex gap-3"
+                  animate={{ x: [-(images.length * (280 + 12)), 0] }}
+                  transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
+                >
+                  {duplicated.map((img, i) => (
+                    <div
+                      key={`r2-${i}`}
+                      className="flex-shrink-0 w-[240px] md:w-[280px] aspect-[4/3] rounded-xl overflow-hidden shadow-xl"
+                    >
+                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                    </div>
+                  ))}
+                </motion.div>
               </div>
             </div>
           );
