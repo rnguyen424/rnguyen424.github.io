@@ -511,6 +511,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
               <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 flex-1 max-h-[72vh] auto-rows-[1fr] relative z-10 overflow-hidden">
                 {images.map((img, i) => {
                   const style = itemStyles[i % itemStyles.length];
+                  const isMain = i === 0;
                   return (
                     <motion.div
                       key={i}
@@ -519,9 +520,9 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06, duration: 0.5, type: "spring", stiffness: 150 }}
                       whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
-                      className={`${style.colSpan} rounded-xl overflow-hidden shadow-xl cursor-pointer`}
+                      className={`${style.colSpan} rounded-xl overflow-hidden shadow-xl cursor-pointer ${isMain ? "bg-black/20" : ""}`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                      <img src={img} alt="" className={`w-full h-full ${isMain ? "object-contain" : "object-cover object-top"}`} />
                     </motion.div>
                   );
                 })}
