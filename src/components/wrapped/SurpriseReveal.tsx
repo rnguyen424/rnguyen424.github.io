@@ -4,16 +4,30 @@ import { Gift, Ticket, Sparkles } from "lucide-react";
 import surpriseImg from "@/assets/surprise-bruno-mars.jpg";
 import brunoMarsTrack from "@/assets/audio/bruno-mars.mp3";
 
-const SurpriseReveal = () => {
+interface SurpriseRevealProps {
+  isActive?: boolean;
+}
+
+const SurpriseReveal = ({ isActive = false }: SurpriseRevealProps) => {
   const [phase, setPhase] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Play Bruno Mars when the reveal happens (phase 4)
+  // Reset phase and stop audio when leaving this slide
   useEffect(() => {
-    if (phase === 4 && audioRef.current) {
+    if (!isActive) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+      setPhase(0);
+    }
+  }, [isActive]);
+
+  // Play Bruno Mars when the reveal happens (phase 4) and slide is active
+  useEffect(() => {
+    if (phase === 4 && isActive && audioRef.current) {
       audioRef.current.volume = 0;
       audioRef.current.play().then(() => {
-        // Fade in
         const fadeIn = setInterval(() => {
           if (audioRef.current && audioRef.current.volume < 0.95) {
             audioRef.current.volume = Math.min(1, audioRef.current.volume + 0.05);
@@ -23,9 +37,10 @@ const SurpriseReveal = () => {
         }, 50);
       }).catch(() => {});
     }
-  }, [phase]);
+  }, [phase, isActive]);
 
   useEffect(() => {
+    if (!isActive) return;
     if (phase === 0) {
       const t = setTimeout(() => setPhase(1), 1500);
       return () => clearTimeout(t);
@@ -42,7 +57,7 @@ const SurpriseReveal = () => {
       const t = setTimeout(() => setPhase(4), 1800);
       return () => clearTimeout(t);
     }
-  }, [phase]);
+  }, [phase, isActive]);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

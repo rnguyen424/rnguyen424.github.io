@@ -8,7 +8,9 @@ import ClosingCard from "@/components/wrapped/ClosingCard";
 import SurpriseReveal from "@/components/wrapped/SurpriseReveal";
 import MusicPlayer from "@/components/wrapped/MusicPlayer";
 
-const sections = [HeroCard, TimelineSection, HobbyIntro, ...hobbySlides, ClosingCard, SurpriseReveal];
+const SURPRISE_INDEX = 3 + hobbySlides.length + 1; // HeroCard, Timeline, HobbyIntro, ...hobbies, ClosingCard, then Surprise
+const sectionComponents = [HeroCard, TimelineSection, HobbyIntro, ...hobbySlides, ClosingCard, SurpriseReveal];
+const sections = sectionComponents;
 
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,7 +104,11 @@ const Index = () => {
       <div ref={containerRef} className="h-screen overflow-hidden">
         {sections.map((Section, i) => (
           <div key={i} className="h-screen w-full overflow-y-auto">
-            <Section />
+            {Section === SurpriseReveal ? (
+              <SurpriseReveal isActive={currentSection === i} />
+            ) : (
+              <Section />
+            )}
           </div>
         ))}
       </div>
