@@ -103,7 +103,7 @@ const hobbies = [
     videos: [],
     bgClass: "hobby-bg-family",
     textGradient: "text-gradient-golden",
-    layout: "overlap-right" as const,
+    layout: "family-rain" as const,
     theme: "family" as const,
   },
 ];
