@@ -22,23 +22,23 @@ interface City {
 // Positions calibrated to the simplified world map image (percentage-based)
 const cities: City[] = [
   // US cities
-  { name: "Las Vegas", px: 14.5, py: 37 },
+  { name: "Las Vegas", px: 14.5, py: 37, image: travelVegas },
   { name: "Dallas", px: 18, py: 42 },
-  { name: "Austin", px: 17.5, py: 44, image: hobbyTravel2 },
+  { name: "Austin", px: 17.5, py: 44, image: travelAustin },
   { name: "San Antonio", px: 17, py: 45 },
-  { name: "Houston", px: 18.5, py: 44.5, image: hobbyTravel },
+  { name: "Houston", px: 18.5, py: 44.5 },
   { name: "Destin", px: 22, py: 41 },
-  { name: "Orlando", px: 23.5, py: 44 },
+  { name: "Orlando", px: 23.5, py: 44, image: travelOrlando },
   { name: "Chicago", px: 21, py: 34 },
   { name: "Knoxville", px: 22.5, py: 38 },
-  { name: "Atlanta", px: 22.5, py: 40 },
+  { name: "Atlanta", px: 22.5, py: 40, image: travelAtlanta },
   { name: "Charlotte", px: 23.5, py: 38 },
   { name: "Lynchburg", px: 24, py: 37 },
   { name: "Baltimore", px: 25, py: 35.5 },
-  { name: "Boston", px: 26.5, py: 33, image: hobbyTravel3 },
-  { name: "New York City", px: 25.8, py: 34.5, image: hobbyTravel4 },
+  { name: "Boston", px: 26.5, py: 33, image: travelBoston },
+  { name: "New York City", px: 25.8, py: 34.5, image: travelNYC },
   // International
-  { name: "Cabo San Lucas", px: 15, py: 48, international: true },
+  { name: "Cabo San Lucas", px: 15, py: 48, international: true, image: travelCabo },
   { name: "Huatulco", px: 17.5, py: 52, international: true },
   { name: "Saint Martin", px: 29, py: 50, international: true },
   { name: "Anguilla", px: 29.2, py: 49.5, international: true },
@@ -47,7 +47,7 @@ const cities: City[] = [
   { name: "Da Nang", px: 76.5, py: 51, international: true },
   { name: "Dalat", px: 76.5, py: 54, international: true },
   { name: "Nha Trang", px: 77, py: 53, international: true },
-  { name: "Ho Chi Minh City", px: 76, py: 55, international: true, image: hobbyTravel },
+  { name: "Ho Chi Minh City", px: 76, py: 55, international: true, image: travelHCM },
 ];
 
 const routeOrder = [
