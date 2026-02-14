@@ -55,6 +55,16 @@ import family7 from "@/assets/family/family7.png";
 import family8 from "@/assets/family/family8.png";
 import family9 from "@/assets/family/family9.png";
 import family10 from "@/assets/family/family10.png";
+import family11 from "@/assets/family/family11.png";
+import family12 from "@/assets/family/family12.png";
+import family13 from "@/assets/family/family13.png";
+import family14 from "@/assets/family/family14.png";
+import family15 from "@/assets/family/family15.png";
+import family16 from "@/assets/family/family16.png";
+import family17 from "@/assets/family/family17.png";
+import family18 from "@/assets/family/family18.png";
+import family19 from "@/assets/family/family19.png";
+import family20 from "@/assets/family/family20.png";
 
 const hobbies = [
   {
@@ -105,7 +115,7 @@ const hobbies = [
     title: "Our People",
     subtitle: "Family & Loved Ones",
     description: "The ones who raised us, the ones who cheer us on — every family gathering, holiday, and group hug makes this journey even sweeter.",
-    images: [family1, family2, family3, family4, family5, family6, family7, family8, family9, family10],
+    images: [family1, family2, family3, family4, family5, family6, family7, family8, family9, family10, family11, family12, family13, family14, family15, family16, family17, family18, family19, family20],
     videos: [],
     bgClass: "hobby-bg-family",
     textGradient: "text-gradient-golden",
