@@ -33,6 +33,14 @@ import foodRyeat5 from "@/assets/food/food-ryeat5.png";
 import foodRyeat6 from "@/assets/food/food-ryeat6.png";
 import foodSyeat4 from "@/assets/food/food-syeat4.png";
 import foodSyeat5 from "@/assets/food/food-syeat5.png";
+import foodRyeat7 from "@/assets/food/food-ryeat7.png";
+import foodRyeat8 from "@/assets/food/food-ryeat8.png";
+import foodSyeat42 from "@/assets/food/food-syeat4-2.png";
+import foodSyeat52 from "@/assets/food/food-syeat5-2.png";
+import foodSyeat7 from "@/assets/food/food-syeat7.png";
+import foodSyeat8 from "@/assets/food/food-syeat8.png";
+import foodWeat1 from "@/assets/food/food-weat1.png";
+import foodSyeat9 from "@/assets/food/food-syeat9.png";
 import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
@@ -69,7 +77,7 @@ const hobbies = [
     title: "Foodies For Life",
     subtitle: "We Just Love to Eat!",
     description: "From hidden gem restaurants to late-night feasts — food is our love language. Every bite is a memory, every meal an adventure.",
-    images: [hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood6, hobbyFood7, hobbyFood8, foodRyeat, foodRyeat1, foodRyeat2, foodRysyeat, foodSyeat1, foodSyeat2, foodSyeat3, foodRyeat3, foodRyeat4, foodRyeat5, foodRyeat6, foodSyeat4, foodSyeat5],
+    images: [hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood6, hobbyFood7, hobbyFood8, foodRyeat, foodRyeat1, foodRyeat2, foodRysyeat, foodSyeat1, foodSyeat2, foodSyeat3, foodRyeat3, foodRyeat4, foodRyeat5, foodRyeat6, foodSyeat4, foodSyeat5, foodRyeat7, foodRyeat8, foodSyeat42, foodSyeat52, foodSyeat7, foodSyeat8, foodWeat1, foodSyeat9],
     videos: [],
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",

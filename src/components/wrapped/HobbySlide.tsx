@@ -525,24 +525,12 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
           const duplicated = [...images, ...images];
           return (
             <div className="h-screen flex flex-col items-center justify-center overflow-hidden">
-              {/* Title */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="text-center mb-6 flex-shrink-0 relative z-30 px-4"
-              >
-                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
-                <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
-                <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
-              </motion.div>
               {/* Row 1 — scrolls left */}
               <div className="w-full overflow-hidden mb-3 relative z-10">
                 <motion.div
                   className="flex gap-3"
                   animate={{ x: [0, -(images.length * (320 + 12))] }}
-                  transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: images.length * 3, repeat: Infinity, ease: "linear" }}
                 >
                   {duplicated.map((img, i) => (
                     <div
@@ -554,12 +542,24 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                   ))}
                 </motion.div>
               </div>
+              {/* Title — between the two carousels */}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="text-center my-4 flex-shrink-0 relative z-30 px-4"
+              >
+                <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
+                <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
+                <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
+              </motion.div>
               {/* Row 2 — scrolls right (reverse) */}
               <div className="w-full overflow-hidden relative z-10">
                 <motion.div
                   className="flex gap-3"
                   animate={{ x: [-(images.length * (320 + 12)), 0] }}
-                  transition={{ duration: images.length * 4, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: images.length * 3, repeat: Infinity, ease: "linear" }}
                 >
                   {duplicated.map((img, i) => (
                     <div
