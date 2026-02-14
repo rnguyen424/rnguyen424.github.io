@@ -11,20 +11,6 @@ const ClosingCard = () => {
       </div>
 
       <div className="relative z-10 text-center max-w-2xl">
-        <motion.div
-          initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, type: "spring" }}
-          className="inline-flex items-center justify-center mb-8"
-        >
-          <Sparkles className="w-6 h-6 text-secondary mr-2" />
-          <span className="text-sm font-body uppercase tracking-[0.3em] text-muted-foreground">
-            Here's to forever
-          </span>
-          <Sparkles className="w-6 h-6 text-secondary ml-2" />
-        </motion.div>
-
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +20,7 @@ const ClosingCard = () => {
         >
           <span className="text-foreground">Six years of</span>
           <br />
-          <span className="text-gradient-primary">incredible.</span>
+          <span className="text-gradient-primary">incredible and unforgettable love.</span>
         </motion.h2>
 
         <motion.p
@@ -45,7 +31,7 @@ const ClosingCard = () => {
           className="text-lg md:text-xl text-muted-foreground font-body mb-12 leading-relaxed"
         >
           Every moment with you is a story worth telling. Six years down, forever to go.
-          Here's to more adventures, late-night talks, and falling deeper in love.
+          Here's to more fitness, card collecting, eating good food, traveling, and falling deeper in love.
         </motion.p>
 
         <motion.div
