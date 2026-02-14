@@ -1,4 +1,5 @@
 import HobbySlide from "./HobbySlide";
+import TravelMapSlide from "./TravelMapSlide";
 import climbing4 from "@/assets/fitness/climbing-4.jpg";
 import climbing5 from "@/assets/fitness/climbing-5.jpg";
 import climbing6 from "@/assets/fitness/climbing-6.jpg";
@@ -41,10 +42,6 @@ import foodSyeat7 from "@/assets/food/food-syeat7.png";
 import foodSyeat8 from "@/assets/food/food-syeat8.png";
 import foodWeat1 from "@/assets/food/food-weat1.png";
 import foodSyeat9 from "@/assets/food/food-syeat9.png";
-import hobbyTravel from "@/assets/hobby-travel.jpg";
-import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
-import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
-import hobbyTravel4 from "@/assets/hobby-travel-4.jpg";
 import family1 from "@/assets/family/family1.png";
 import family2 from "@/assets/family/family2.png";
 import family3 from "@/assets/family/family3.png";
@@ -110,17 +107,7 @@ const hobbies = [
     layout: "food-scatter" as const,
     theme: "food" as const,
   },
-  {
-    title: "Adventure Awaits",
-    subtitle: "Travelling the World",
-    description: "We've been to 4 countries and over 25 cities. I can't wait to see more of the world with you.",
-    images: [hobbyTravel, hobbyTravel3, hobbyTravel2, hobbyTravel4],
-    videos: [],
-    bgClass: "hobby-bg-travel",
-    textGradient: "text-gradient-cool",
-    layout: "full-bleed" as const,
-    theme: "travel" as const,
-  },
+  null, // Travel is handled by TravelMapSlide
   {
     title: "Our People",
     subtitle: "Family & Loved Ones",
@@ -135,6 +122,11 @@ const hobbies = [
 ];
 
 export const hobbySlides = hobbies.map((hobby, i) => {
+  if (hobby === null) {
+    const Slide = () => <TravelMapSlide />;
+    Slide.displayName = "Hobby_AdventureAwaits";
+    return Slide;
+  }
   const Slide = () => <HobbySlide key={i} {...hobby} />;
   Slide.displayName = `Hobby_${hobby.title.replace(/\s/g, "")}`;
   return Slide;
