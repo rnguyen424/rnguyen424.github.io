@@ -107,6 +107,8 @@ const Index = () => {
           <div key={i} className="h-screen w-full overflow-y-auto">
             {Section === SurpriseReveal ? (
               <SurpriseReveal isActive={currentSection === i} isMuted={isMuted} />
+            ) : Section === TimelineSection ? (
+              <TimelineSection isActive={currentSection === i} />
             ) : (
               <Section />
             )}

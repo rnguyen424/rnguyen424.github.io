@@ -38,9 +38,21 @@ const milestones = [
 
 const AUTO_ADVANCE_MS = 4000;
 
-const TimelineSection = () => {
+interface TimelineSectionProps {
+  isActive?: boolean;
+}
+
+const TimelineSection = ({ isActive }: TimelineSectionProps) => {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+
+  // Reset to beginning when section becomes active
+  useEffect(() => {
+    if (isActive) {
+      setDirection(-1);
+      setCurrent(0);
+    }
+  }, [isActive]);
 
   const go = useCallback((idx: number) => {
     setDirection(idx > current ? 1 : -1);
