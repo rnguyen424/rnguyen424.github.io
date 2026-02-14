@@ -176,7 +176,7 @@ const SurpriseReveal = ({ isActive = false, isMuted = true }: SurpriseRevealProp
             >
               <Sparkles className="w-12 h-12 text-primary" />
               <p className="font-display text-3xl md:text-5xl font-bold text-foreground">
-                I got you a present 🎁
+                I have another present for you 🎁
               </p>
             </motion.div>
           )}
@@ -255,16 +255,6 @@ const SurpriseReveal = ({ isActive = false, isMuted = true }: SurpriseRevealProp
                 🎶 Live in concert! 🎶
               </motion.p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6, duration: 0.6 }}
-                className="mt-4 px-8 py-4 rounded-full gradient-golden glow-primary"
-              >
-                <span className="font-display text-lg font-bold text-background">
-                  🎤 Happy Anniversary Baby 🎤
-                </span>
-              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
