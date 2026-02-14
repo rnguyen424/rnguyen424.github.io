@@ -1,15 +1,24 @@
 import { motion } from "framer-motion";
+import covidMuseum from "@/assets/timeline/covid-museum.png";
+import collegeHalloween from "@/assets/timeline/college-halloween.png";
+import firstConcert from "@/assets/timeline/first-concert.png";
+import internshipNyc1 from "@/assets/timeline/internship-nyc-1.png";
+import internshipNyc2 from "@/assets/timeline/internship-nyc-2.png";
+import destin from "@/assets/timeline/destin.png";
+import lollapalooza from "@/assets/timeline/lollapalooza.png";
+import mexico from "@/assets/timeline/mexico.png";
+import disney from "@/assets/timeline/disney.png";
 
 const milestones = [
-  { date: "Aug 2020", title: "COVID Year", desc: "First Museum Visit!", gradient: "gradient-primary" },
-  { date: "Oct 2021", title: "First Year At College Together", desc: "First Halloween Party!", gradient: "gradient-cool" },
-  { date: "Feb 2022", title: "First Concert & Solo Trip", desc: "TWICE!!", gradient: "gradient-warm" },
-  { date: "Jul 2022", title: "End of Ryan's Internship!", desc: "Trip to Massachusetts and New York", gradient: "gradient-golden" },
-  { date: "Jul 2023", title: "First BIG Family Trip", desc: "Destin FL", gradient: "gradient-primary" },
-  { date: "Aug 2023", title: "First Music Festival", desc: "Lollapalooza", gradient: "gradient-cool" },
-  { date: "Mar 2024", title: "First Trip Outside the US", desc: "Huatulco Mexico!", gradient: "gradient-warm" },
+  { date: "Aug 2020", title: "COVID Year", desc: "First Museum Visit!", gradient: "gradient-primary", image: covidMuseum },
+  { date: "Oct 2021", title: "First Year At College Together", desc: "First Halloween Party!", gradient: "gradient-cool", image: collegeHalloween },
+  { date: "Feb 2022", title: "First Concert & Solo Trip", desc: "TWICE!!", gradient: "gradient-warm", image: firstConcert },
+  { date: "Jul 2022", title: "End of Ryan's Internship!", desc: "Trip to Massachusetts and New York", gradient: "gradient-golden", image: internshipNyc1 },
+  { date: "Jul 2023", title: "First BIG Family Trip", desc: "Destin FL", gradient: "gradient-primary", image: destin },
+  { date: "Aug 2023", title: "First Music Festival", desc: "Lollapalooza", gradient: "gradient-cool", image: lollapalooza },
+  { date: "Mar 2024", title: "First Trip Outside the US", desc: "Huatulco Mexico!", gradient: "gradient-warm", image: mexico },
   { date: "May 2024", title: "Ryan College Graduation", desc: "Time to work!", gradient: "gradient-golden" },
-  { date: "Dec 2024", title: "Disney Trip!", desc: "The happiest place on earth", gradient: "gradient-primary" },
+  { date: "Dec 2024", title: "Disney Trip!", desc: "The happiest place on earth", gradient: "gradient-primary", image: disney },
   { date: "Apr 2025", title: "Beabadoobee Round 2!", desc: "Dallas Trip", gradient: "gradient-cool" },
   { date: "May 2025", title: "Sy College & EMT Graduation!", desc: "Double celebration", gradient: "gradient-warm" },
   { date: "Jul 2025", title: "Vietnam Trip", desc: "Back to the motherland!", gradient: "gradient-golden" },
@@ -56,7 +65,7 @@ const TimelineSection = () => {
         </h2>
       </motion.div>
 
-      <div className="max-w-3xl w-full mx-auto relative pb-12">
+      <div className="max-w-4xl w-full mx-auto relative pb-12">
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border" />
 
         {milestones.map((milestone, i) => (
@@ -81,7 +90,23 @@ const TimelineSection = () => {
               <h3 className="font-display text-base md:text-lg font-bold text-foreground leading-tight mb-0.5">
                 {milestone.title}
               </h3>
-              <p className="font-body text-xs text-muted-foreground">{milestone.desc}</p>
+              <p className="font-body text-xs text-muted-foreground mb-2">{milestone.desc}</p>
+              {milestone.image && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  className="mt-1"
+                >
+                  <img
+                    src={milestone.image}
+                    alt={milestone.title}
+                    className="w-full max-w-[200px] aspect-square object-cover object-top rounded-lg border border-border/30 shadow-lg"
+                    style={{ display: "inline-block" }}
+                  />
+                </motion.div>
+              )}
             </div>
           </motion.div>
         ))}
