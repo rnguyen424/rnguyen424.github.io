@@ -114,8 +114,8 @@ const TravelMapSlide = () => {
             <img
               src={worldMap}
               alt="World Map"
-              className="w-full h-auto opacity-20"
-              style={{ filter: "brightness(1.5) sepia(1) hue-rotate(140deg) saturate(2)" }}
+              className="w-full h-auto opacity-25"
+              style={{ filter: "brightness(1.2) sepia(1) hue-rotate(170deg) saturate(3)" }}
             />
 
             {/* Overlay: city dots, labels, routes, plane */}
