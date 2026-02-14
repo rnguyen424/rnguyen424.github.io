@@ -395,7 +395,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
           </div>
         )}
 
-        {/* MOSAIC — Pokémon: playful grid with holographic feel */}
+        {/* MOSAIC — Pokémon: pokéball reveal animation */}
         {layout === "mosaic" && (
           <div className="h-screen flex flex-col justify-center px-4 md:px-12 py-6 overflow-hidden">
             <div className="max-w-6xl mx-auto w-full flex flex-col h-full justify-center">
@@ -404,7 +404,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="mb-3 md:mb-4 flex-shrink-0"
+                className="mb-4 md:mb-6 flex-shrink-0 text-center"
               >
                 <p className="text-xs font-body uppercase tracking-[0.25em] text-foreground/60 mb-1">{subtitle}</p>
                 <h2 className={`font-display text-3xl md:text-5xl font-black mb-1 leading-[0.95] ${textGradient}`}>
@@ -415,33 +415,132 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                     className="inline-block ml-2 text-2xl md:text-3xl"
                   >⚡</motion.span>
                 </h2>
-                <p className="text-xs md:text-sm text-foreground/70 font-body max-w-lg">{description}</p>
+                <p className="text-xs md:text-sm text-foreground/70 font-body max-w-lg mx-auto">{description}</p>
               </motion.div>
-              <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-3 items-start flex-1 max-h-[75vh] auto-rows-fr">
+
+              {/* Pokéball grid with reveal animation */}
+              <div className="grid grid-cols-3 gap-4 md:gap-6 flex-1 max-h-[70vh] place-items-center auto-rows-fr">
                 {images.map((img, i) => {
-                  const rotations = [-3, 2, -2, 4, -4, 3, -1, 3, -2];
-                  const sizes = [
-                    "col-span-1 row-span-2",
-                    "col-span-1",
-                    "col-span-1",
-                    "col-span-1",
-                    "col-span-1 row-span-2",
-                    "col-span-1",
-                    "col-span-1",
-                    "col-span-1",
-                    "col-span-1",
-                  ];
+                  const delay = 0.6 + i * 0.35;
                   return (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 20, rotate: (rotations[i % rotations.length]) * 2, scale: 0.9 }}
-                      whileInView={{ opacity: 1, y: 0, rotate: rotations[i % rotations.length], scale: 1 }}
+                      className="relative w-full aspect-square flex items-center justify-center"
+                      initial="closed"
+                      whileInView="open"
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.08, duration: 0.5 }}
-                      whileHover={{ scale: 1.05, rotate: 0, zIndex: 10 }}
-                      className={`${sizes[i] || ""} rounded-xl overflow-hidden shadow-xl border-2 border-foreground/10 cursor-pointer`}
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover" />
+                      {/* Pokéball SVG that splits open */}
+                      <motion.div
+                        className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
+                        variants={{
+                          closed: { opacity: 1, scale: 1 },
+                          open: { opacity: 0, scale: 1.5 },
+                        }}
+                        transition={{ delay: delay + 0.3, duration: 0.5 }}
+                      >
+                        <svg viewBox="0 0 100 100" className="w-3/4 h-3/4 drop-shadow-lg">
+                          {/* Top half - red */}
+                          <motion.path
+                            d="M 50 50 L 5 50 A 45 45 0 0 1 95 50 Z"
+                            fill="hsl(0, 80%, 50%)"
+                            stroke="hsl(var(--foreground))"
+                            strokeWidth="3"
+                            variants={{
+                              closed: { y: 0 },
+                              open: { y: -30 },
+                            }}
+                            transition={{ delay, duration: 0.4, type: "spring", stiffness: 200 }}
+                          />
+                          {/* Bottom half - white */}
+                          <motion.path
+                            d="M 50 50 L 5 50 A 45 45 0 0 0 95 50 Z"
+                            fill="hsl(0, 0%, 95%)"
+                            stroke="hsl(var(--foreground))"
+                            strokeWidth="3"
+                            variants={{
+                              closed: { y: 0 },
+                              open: { y: 30 },
+                            }}
+                            transition={{ delay, duration: 0.4, type: "spring", stiffness: 200 }}
+                          />
+                          {/* Center band */}
+                          <motion.rect
+                            x="2" y="46" width="96" height="8" rx="2"
+                            fill="hsl(var(--foreground))"
+                            variants={{
+                              closed: { opacity: 1 },
+                              open: { opacity: 0 },
+                            }}
+                            transition={{ delay: delay + 0.1, duration: 0.3 }}
+                          />
+                          {/* Center button */}
+                          <motion.circle
+                            cx="50" cy="50" r="10"
+                            fill="hsl(0, 0%, 95%)"
+                            stroke="hsl(var(--foreground))"
+                            strokeWidth="3"
+                            variants={{
+                              closed: { scale: 1 },
+                              open: { scale: 0 },
+                            }}
+                            transition={{ delay: delay + 0.1, duration: 0.3 }}
+                          />
+                          <motion.circle
+                            cx="50" cy="50" r="5"
+                            fill="hsl(var(--foreground))"
+                            variants={{
+                              closed: { scale: 1 },
+                              open: { scale: 0 },
+                            }}
+                            transition={{ delay: delay + 0.1, duration: 0.3 }}
+                          />
+                        </svg>
+                      </motion.div>
+
+                      {/* Burst particles on open */}
+                      {[...Array(6)].map((_, j) => (
+                        <motion.div
+                          key={`spark-${j}`}
+                          className="absolute w-2 h-2 rounded-full z-20 pointer-events-none"
+                          style={{
+                            background: ["hsl(50,100%,60%)", "hsl(0,80%,55%)", "hsl(200,100%,60%)", "hsl(120,80%,50%)", "hsl(280,90%,65%)", "hsl(30,100%,55%)"][j],
+                          }}
+                          variants={{
+                            closed: { opacity: 0, x: 0, y: 0, scale: 0 },
+                            open: {
+                              opacity: [0, 1, 0],
+                              x: Math.cos((j * Math.PI * 2) / 6) * 80,
+                              y: Math.sin((j * Math.PI * 2) / 6) * 80,
+                              scale: [0, 1.5, 0],
+                            },
+                          }}
+                          transition={{ delay: delay + 0.2, duration: 0.6 }}
+                        />
+                      ))}
+
+                      {/* White flash on reveal */}
+                      <motion.div
+                        className="absolute inset-0 rounded-2xl bg-white z-5 pointer-events-none"
+                        variants={{
+                          closed: { opacity: 0 },
+                          open: { opacity: [0, 0.8, 0] },
+                        }}
+                        transition={{ delay: delay + 0.25, duration: 0.4 }}
+                      />
+
+                      {/* The revealed image */}
+                      <motion.div
+                        className="w-full h-full rounded-2xl overflow-hidden shadow-2xl border-2 border-secondary/30"
+                        variants={{
+                          closed: { opacity: 0, scale: 0.3, rotate: -10 },
+                          open: { opacity: 1, scale: 1, rotate: 0 },
+                        }}
+                        transition={{ delay: delay + 0.3, duration: 0.6, type: "spring", bounce: 0.4 }}
+                        whileHover={{ scale: 1.08, zIndex: 30, rotate: 0 }}
+                      >
+                        <img src={img} alt="" className="w-full h-full object-cover" />
+                      </motion.div>
                     </motion.div>
                   );
                 })}
@@ -460,7 +559,6 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                     {ball}
                   </motion.div>
                 ))}
-                {/* Pikachu, Charizard, Gengar, Eevee silhouette text decals */}
                 {["⚡ Pikachu", "🔥 Charizard", "👻 Gengar", "🌟 Eevee"].map((label, i) => (
                   <motion.span
                     key={`label-${i}`}
