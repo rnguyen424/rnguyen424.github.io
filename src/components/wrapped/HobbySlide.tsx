@@ -9,7 +9,7 @@ interface HobbySlideProps {
   videos?: string[];
   bgClass: string;
   textGradient: string;
-  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid" | "food-scatter" | "fitness-grid";
+  layout: "hero-left" | "mosaic" | "overlap-right" | "full-bleed" | "gallery-grid" | "food-scatter" | "fitness-grid" | "family-rain";
   theme: "fitness" | "pokemon" | "food" | "travel" | "gaming" | "family";
 }
 
@@ -684,6 +684,59 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                   </motion.div>
                 ))}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* FAMILY RAIN — photos falling sporadically */}
+        {layout === "family-rain" && (
+          <div className="h-screen flex flex-col items-center justify-center overflow-hidden relative">
+            {/* Title overlay */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none"
+            >
+              <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-2">{subtitle}</p>
+              <h2 className={`font-display text-5xl md:text-7xl font-black mb-3 leading-[0.9] italic ${textGradient}`}>{title}</h2>
+              <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md text-center px-4">{description}</p>
+            </motion.div>
+
+            {/* Raining photos */}
+            <div className="absolute inset-0 overflow-hidden">
+              {images.map((img, i) => {
+                const cols = 6;
+                const col = i % cols;
+                const leftPercent = (col / cols) * 100 + Math.random() * (100 / cols) * 0.6;
+                const delay = (i * 0.7) % 8;
+                const duration = 10 + (i % 5) * 2;
+                const size = i % 3 === 0 ? "w-28 h-36 md:w-36 md:h-44" : i % 3 === 1 ? "w-24 h-32 md:w-32 md:h-40" : "w-20 h-28 md:w-28 md:h-36";
+                const rotation = ((i * 37) % 30) - 15;
+
+                return (
+                  <motion.div
+                    key={i}
+                    className={`absolute ${size} rounded-xl overflow-hidden shadow-2xl border border-foreground/10`}
+                    style={{ left: `${leftPercent}%` }}
+                    initial={{ y: "-20%", opacity: 0, rotate: rotation }}
+                    animate={{
+                      y: ["- 20%", "120vh"],
+                      opacity: [0, 0.9, 0.9, 0],
+                      rotate: [rotation, rotation + (i % 2 === 0 ? 8 : -8)],
+                    }}
+                    transition={{
+                      duration,
+                      delay,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  >
+                    <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         )}
