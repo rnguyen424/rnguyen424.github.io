@@ -419,13 +419,13 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
               </motion.div>
 
               {/* Pokéball grid with reveal animation */}
-              <div className="grid grid-cols-3 gap-4 md:gap-6 flex-1 max-h-[70vh] place-items-center auto-rows-fr">
+              <div className="grid grid-cols-3 gap-3 md:gap-4 max-h-[55vh] place-items-center" style={{ gridAutoRows: "1fr" }}>
                 {images.map((img, i) => {
-                  const delay = 0.6 + i * 0.35;
+                  const delay = 0.6 + i * 0.25;
                   return (
                     <motion.div
                       key={i}
-                      className="relative w-full aspect-square flex items-center justify-center"
+                      className="relative w-full h-full min-h-0 flex items-center justify-center"
                       initial="closed"
                       whileInView="open"
                       viewport={{ once: true }}
