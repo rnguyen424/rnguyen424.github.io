@@ -519,38 +519,34 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
           </div>
         )}
 
-        {/* FOOD SCATTER — Non-uniform grid, images only, faces visible */}
+        {/* FOOD SCATTER — Centered grid, all faces visible */}
         {layout === "food-scatter" && (() => {
           const itemStyles = [
-            { colSpan: "col-span-2 row-span-2", rot: -2 },
-            { colSpan: "", rot: 3 },
-            { colSpan: "", rot: -1 },
-            { colSpan: "", rot: 4 },
-            { colSpan: "col-span-2", rot: -3 },
-            { colSpan: "", rot: 2 },
-            { colSpan: "", rot: -4 },
-            { colSpan: "", rot: 5 },
-            { colSpan: "col-span-2", rot: -2 },
+            { colSpan: "col-span-1", rot: -2 },
+            { colSpan: "col-span-1", rot: 3 },
+            { colSpan: "col-span-1", rot: -1 },
+            { colSpan: "col-span-1", rot: 4 },
+            { colSpan: "col-span-1", rot: -3 },
+            { colSpan: "col-span-1", rot: 2 },
           ];
           return (
-            <div className="h-screen flex flex-col px-4 md:px-10 py-6 overflow-hidden">
+            <div className="h-screen flex flex-col items-center justify-center px-4 md:px-10 py-6 overflow-hidden">
               {/* Title — top, fully visible */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-center mb-4 flex-shrink-0 relative z-30"
+                className="text-center mb-6 flex-shrink-0 relative z-30"
               >
                 <p className="text-xs md:text-sm font-body uppercase tracking-[0.3em] text-foreground/70 mb-1">{subtitle}</p>
                 <h2 className={`font-display text-4xl md:text-6xl font-black mb-2 leading-[0.9] italic ${textGradient}`}>{title}</h2>
                 <p className="text-xs md:text-sm text-foreground/60 font-body max-w-md mx-auto">{description}</p>
               </motion.div>
-              {/* Image grid — non-uniform, object-top to show faces */}
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-2 md:gap-3 flex-1 max-h-[72vh] auto-rows-[1fr] relative z-10 overflow-hidden">
+              {/* Image grid — centered, uniform sizing */}
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 max-w-3xl w-full relative z-10">
                 {images.map((img, i) => {
                   const style = itemStyles[i % itemStyles.length];
-                  const isMain = i === 0;
                   return (
                     <motion.div
                       key={i}
@@ -559,9 +555,9 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.06, duration: 0.5, type: "spring", stiffness: 150 }}
                       whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
-                      className={`${style.colSpan} rounded-xl overflow-hidden shadow-xl cursor-pointer ${isMain ? "bg-black/20" : ""}`}
+                      className="rounded-xl overflow-hidden shadow-xl cursor-pointer aspect-[4/3]"
                     >
-                      <img src={img} alt="" className={`w-full h-full ${isMain ? "object-contain" : "object-cover object-top"}`} />
+                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
                     </motion.div>
                   );
                 })}
