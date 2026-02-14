@@ -19,9 +19,6 @@ import hobbyFood6 from "@/assets/food/hobby-food-6.jpg";
 import hobbyFood7 from "@/assets/food/hobby-food-7.jpg";
 import hobbyFood8 from "@/assets/food/hobby-food-8.jpg";
 import hobbyFood9 from "@/assets/food/hobby-food-9.jpg";
-import foodVideo1 from "@/assets/food/food-video-1.mp4";
-import foodVideo2 from "@/assets/food/food-video-2.mp4";
-import foodVideo3 from "@/assets/food/food-video-3.mp4";
 import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
@@ -59,7 +56,7 @@ const hobbies = [
     subtitle: "We Just Love to Eat!",
     description: "From hidden gem restaurants to late-night feasts — food is our love language. Every bite is a memory, every meal an adventure.",
     images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood5, hobbyFood6, hobbyFood7, hobbyFood8, hobbyFood9],
-    videos: [foodVideo1, foodVideo2, foodVideo3],
+    videos: [],
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",
     layout: "food-scatter" as const,
