@@ -55,7 +55,7 @@ const hobbies = [
     title: "Foodies For Life",
     subtitle: "We Just Love to Eat!",
     description: "From hidden gem restaurants to late-night feasts — food is our love language. Every bite is a memory, every meal an adventure.",
-    images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood5, hobbyFood6, hobbyFood7, hobbyFood8, hobbyFood9],
+    images: [hobbyFood, hobbyFood2, hobbyFood3, hobbyFood4, hobbyFood6, hobbyFood7, hobbyFood8],
     videos: [],
     bgClass: "hobby-bg-food",
     textGradient: "text-gradient-warm",
