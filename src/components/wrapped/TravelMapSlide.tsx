@@ -5,7 +5,7 @@ import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
 import hobbyTravel4 from "@/assets/hobby-travel-4.jpg";
 
-// Map coordinates (approximate Mercator projection for SVG viewBox 0 0 1000 500)
+// Equirectangular projection: x = (lon+180)/360*1000, y = (90-lat)/180*500
 interface City {
   name: string;
   x: number;
@@ -15,33 +15,33 @@ interface City {
 }
 
 const cities: City[] = [
-  // US cities
-  { name: "Las Vegas", x: 152, y: 195 },
-  { name: "Dallas", x: 228, y: 230 },
-  { name: "Austin", x: 222, y: 245, image: hobbyTravel2 },
-  { name: "San Antonio", x: 216, y: 250 },
-  { name: "Houston", x: 237, y: 250, image: hobbyTravel },
-  { name: "Destin", x: 290, y: 230 },
-  { name: "Orlando", x: 310, y: 245, image: hobbyTravel3 },
-  { name: "Chicago", x: 270, y: 175 },
-  { name: "Knoxville", x: 298, y: 208 },
-  { name: "Atlanta", x: 298, y: 222 },
-  { name: "Charlotte", x: 313, y: 210 },
-  { name: "Lynchburg", x: 318, y: 200 },
-  { name: "Baltimore", x: 328, y: 190 },
-  { name: "Boston", x: 342, y: 172 },
-  { name: "New York City", x: 338, y: 182, image: hobbyTravel4 },
+  // US cities (coordinates calculated from real lat/lon)
+  { name: "Las Vegas", x: 180, y: 149 },
+  { name: "Dallas", x: 231, y: 159 },
+  { name: "Austin", x: 228, y: 166, image: hobbyTravel2 },
+  { name: "San Antonio", x: 226, y: 168 },
+  { name: "Houston", x: 235, y: 167, image: hobbyTravel },
+  { name: "Destin", x: 260, y: 166 },
+  { name: "Orlando", x: 274, y: 171, image: hobbyTravel3 },
+  { name: "Chicago", x: 256, y: 134 },
+  { name: "Knoxville", x: 267, y: 150 },
+  { name: "Atlanta", x: 266, y: 156 },
+  { name: "Charlotte", x: 275, y: 152 },
+  { name: "Lynchburg", x: 280, y: 146 },
+  { name: "Baltimore", x: 287, y: 141 },
+  { name: "Boston", x: 303, y: 132 },
+  { name: "New York City", x: 294, y: 137, image: hobbyTravel4 },
   // International
-  { name: "Cabo San Lucas", x: 170, y: 260, international: true },
-  { name: "Huatulco", x: 205, y: 280, international: true },
-  { name: "Saint Martin", x: 355, y: 280, international: true },
-  { name: "Anguilla", x: 356, y: 278, international: true },
-  { name: "Narita", x: 830, y: 192, international: true },
-  { name: "Hue City", x: 775, y: 275, international: true },
-  { name: "Da Nang", x: 778, y: 280, international: true },
-  { name: "Dalat", x: 778, y: 295, international: true },
-  { name: "Nha Trang", x: 781, y: 290, international: true },
-  { name: "Ho Chi Minh City", x: 775, y: 300, international: true, image: hobbyTravel },
+  { name: "Cabo San Lucas", x: 195, y: 186, international: true },
+  { name: "Huatulco", x: 233, y: 206, international: true },
+  { name: "Saint Martin", x: 325, y: 200, international: true },
+  { name: "Anguilla", x: 326, y: 199, international: true },
+  { name: "Narita", x: 890, y: 151, international: true },
+  { name: "Hue City", x: 799, y: 204, international: true },
+  { name: "Da Nang", x: 801, y: 206, international: true },
+  { name: "Dalat", x: 801, y: 217, international: true },
+  { name: "Nha Trang", x: 803, y: 216, international: true },
+  { name: "Ho Chi Minh City", x: 796, y: 220, international: true, image: hobbyTravel },
 ];
 
 // Order for plane animation — roughly a travel route
@@ -137,60 +137,163 @@ const TravelMapSlide = () => {
               <line key={`v-${i}`} x1={i * 40} y1="0" x2={i * 40} y2="500" stroke="hsl(200, 80%, 60%)" strokeOpacity="0.07" strokeWidth="0.5" />
             ))}
 
-            {/* Simplified continent outlines */}
+            {/* World map continents — equirectangular projection */}
             {/* North America */}
             <path
-              d="M 120 80 L 180 60 L 250 55 L 310 70 L 350 90 L 360 120 L 355 160 L 340 170 L 330 190 L 310 210 L 290 230 L 300 250 L 280 260 L 250 260 L 230 270 L 210 280 L 200 290 L 190 280 L 175 260 L 160 240 L 150 210 L 140 180 L 130 150 L 120 120 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.25"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.3"
-              strokeWidth="1"
+              d="M 42,69 L 58,58 83,56 97,50 111,47 125,50 139,56 150,61
+                 156,67 161,72 167,83 172,94 175,106 178,117 181,128
+                 183,139 181,147 175,153 169,161 164,167 158,172 153,178
+                 150,183 147,189 144,194 153,194 158,197 164,200
+                 172,203 178,206 183,208 192,211 200,214 208,214
+                 214,211 219,208 225,206 231,203 236,200 242,197
+                 250,194 258,192 264,189 272,183 278,178 283,172
+                 289,164 294,156 297,147 300,139 303,131 306,125
+                 311,119 317,114 314,108 308,103 303,97 297,92
+                 292,86 281,83 269,81 258,78 247,75 236,72
+                 225,69 214,67 203,64 192,61 181,58 169,56
+                 158,53 147,50 136,47 125,44 114,42 103,42
+                 92,44 83,47 72,50 61,56 50,61 42,69 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.25"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.3" strokeWidth="0.8"
+            />
+            {/* Central America & Caribbean connector */}
+            <path
+              d="M 208,214 L 214,219 219,225 222,231 225,236 228,242
+                 231,247 233,253 231,258 228,261 225,264 222,267
+                 219,269 217,272 214,275 211,278"
+              fill="none"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.25" strokeWidth="0.8"
             />
             {/* South America */}
             <path
-              d="M 240 300 L 270 290 L 300 300 L 310 330 L 300 360 L 290 390 L 270 420 L 250 440 L 240 430 L 235 400 L 240 370 L 235 340 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.2"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.2"
-              strokeWidth="1"
+              d="M 211,278 L 219,275 228,272 236,272 244,275 253,278
+                 261,281 269,286 275,292 278,300 281,308 283,317
+                 283,325 281,333 278,342 275,350 272,358 267,367
+                 261,375 256,383 250,389 244,394 239,400 236,406
+                 233,411 231,417 228,422 225,428 222,433 219,436
+                 217,431 214,425 211,419 208,414 206,408 206,400
+                 208,392 211,383 214,375 217,367 219,358 222,350
+                 222,342 222,333 219,325 217,317 214,308 211,300
+                 208,292 206,286 208,281 211,278 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.2"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.2" strokeWidth="0.8"
             />
             {/* Europe */}
             <path
-              d="M 460 70 L 490 60 L 520 65 L 540 80 L 530 100 L 520 120 L 500 130 L 480 140 L 460 135 L 450 115 L 455 90 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.2"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.2"
-              strokeWidth="1"
+              d="M 472,53 L 478,50 486,47 494,47 503,50 511,53
+                 517,58 522,64 525,69 528,75 531,81 533,86
+                 531,92 528,97 525,103 522,108 519,114 514,119
+                 511,122 506,125 500,128 494,131 489,133
+                 483,136 478,136 472,133 467,131 464,128
+                 461,125 458,119 456,114 453,108 453,103
+                 456,97 458,92 461,86 464,81 467,75
+                 469,69 472,64 472,53 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.2"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.2" strokeWidth="0.8"
+            />
+            {/* British Isles */}
+            <path
+              d="M 458,78 L 461,75 464,72 467,72 467,78 464,83 461,83 458,78 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.2"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.5"
+            />
+            {/* Scandinavia */}
+            <path
+              d="M 475,36 L 481,33 486,31 492,33 497,36 500,42
+                 500,47 497,53 494,56 489,53 486,50 483,47
+                 481,42 478,39 475,36 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.18"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.5"
             />
             {/* Africa */}
             <path
-              d="M 470 160 L 510 150 L 550 160 L 570 190 L 575 230 L 570 270 L 555 310 L 535 350 L 510 370 L 490 360 L 475 330 L 465 290 L 460 250 L 455 210 L 460 180 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.15"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.15"
-              strokeWidth="1"
+              d="M 472,156 L 483,150 494,147 506,147 517,150
+                 528,153 536,158 542,164 547,172 550,181
+                 553,192 556,203 558,214 558,225 556,236
+                 553,247 550,258 547,269 542,278 536,289
+                 531,297 525,306 519,314 514,322 508,328
+                 503,333 497,336 492,336 486,333 481,328
+                 475,322 472,314 469,306 467,297 464,289
+                 461,278 458,267 456,256 456,244 458,233
+                 461,222 464,211 467,200 469,189 472,178
+                 472,167 472,156 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.18"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.8"
             />
-            {/* Asia */}
+            {/* Asia (mainland) */}
             <path
-              d="M 560 60 L 620 50 L 700 55 L 780 70 L 850 90 L 870 120 L 860 160 L 840 190 L 810 210 L 780 230 L 750 260 L 720 280 L 690 290 L 660 280 L 640 250 L 620 220 L 600 190 L 580 160 L 560 130 L 555 100 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.2"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.25"
-              strokeWidth="1"
+              d="M 533,86 L 544,78 556,72 569,67 583,64 597,61
+                 611,58 625,56 639,56 653,56 667,58 681,61
+                 694,64 708,67 722,72 736,78 750,83 764,89
+                 778,94 789,100 800,108 808,117 814,125
+                 819,133 822,142 825,150 825,158 822,167
+                 819,175 814,181 808,189 800,194 792,200
+                 783,206 775,211 764,217 753,222 742,225
+                 731,228 719,228 708,225 697,222 686,219
+                 675,214 664,211 653,206 642,200 631,194
+                 622,189 614,183 606,175 597,167 589,158
+                 581,150 575,142 569,133 564,125 558,117
+                 553,108 547,100 542,94 536,89 533,86 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.22"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.25" strokeWidth="0.8"
+            />
+            {/* India subcontinent */}
+            <path
+              d="M 697,175 L 703,181 708,189 711,197 714,206
+                 714,214 711,222 708,231 703,239 697,244
+                 692,247 686,244 681,239 678,231 675,222
+                 675,214 678,206 681,197 686,189 692,181
+                 697,175 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.2"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.2" strokeWidth="0.5"
+            />
+            {/* Southeast Asia / Vietnam peninsula */}
+            <path
+              d="M 775,211 L 781,217 786,222 789,228 792,233
+                 794,239 797,244 800,250 803,256 806,261
+                 808,267 806,272 803,275 800,272 797,267
+                 794,261 792,256 789,250 786,244 783,239
+                 781,233 778,228 775,222 775,211 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.22"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.3" strokeWidth="0.8"
+            />
+            {/* Japan */}
+            <path
+              d="M 878,125 L 883,119 889,114 894,117 897,122
+                 897,128 894,133 892,139 889,144 886,150
+                 883,156 881,158 878,153 875,147 875,142
+                 875,136 875,131 878,125 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.22"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.3" strokeWidth="0.8"
+            />
+            {/* Indonesia / Maritime SE Asia */}
+            <path
+              d="M 792,264 L 800,261 808,258 817,258 825,261
+                 833,264 842,264 850,264 856,267 850,269
+                 842,272 833,272 825,272 817,272 808,269
+                 800,267 792,264 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.15"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.5"
             />
             {/* Australia */}
             <path
-              d="M 790 350 L 830 340 L 870 350 L 890 370 L 880 400 L 860 420 L 830 425 L 800 410 L 785 390 L 780 370 Z"
-              fill="hsl(200, 60%, 30%)"
-              fillOpacity="0.15"
-              stroke="hsl(160, 85%, 55%)"
-              strokeOpacity="0.15"
-              strokeWidth="1"
+              d="M 817,328 L 831,322 844,319 858,319 872,322
+                 883,328 892,336 897,344 900,353 900,364
+                 897,375 892,383 886,389 878,394 869,397
+                 861,400 853,400 844,397 836,394 828,389
+                 822,383 817,375 814,367 814,358 814,350
+                 814,342 817,336 817,328 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.15"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.8"
+            />
+            {/* Greenland */}
+            <path
+              d="M 361,28 L 372,25 383,25 394,28 403,33
+                 408,39 411,47 408,53 403,56 397,58
+                 392,56 386,53 381,50 375,47 369,44
+                 364,39 361,33 361,28 Z"
+              fill="hsl(200, 60%, 30%)" fillOpacity="0.15"
+              stroke="hsl(160, 85%, 55%)" strokeOpacity="0.15" strokeWidth="0.5"
             />
 
             {/* Route lines connecting visited stops */}
