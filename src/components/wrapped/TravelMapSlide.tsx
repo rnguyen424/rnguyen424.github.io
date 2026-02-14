@@ -1,10 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import hobbyTravel from "@/assets/hobby-travel.jpg";
-import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
-import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
-import hobbyTravel4 from "@/assets/hobby-travel-4.jpg";
 import worldMap from "@/assets/world-map.png";
+import travelAtlanta from "@/assets/travel/atlanta.png";
+import travelAustin from "@/assets/travel/austin.png";
+import travelBoston from "@/assets/travel/boston.png";
+import travelCabo from "@/assets/travel/cabo.png";
+import travelHCM from "@/assets/travel/hochiminh.png";
+import travelNYC from "@/assets/travel/nyc.png";
+import travelOrlando from "@/assets/travel/orlando.png";
+import travelVegas from "@/assets/travel/lasvegas.png";
 
 interface City {
   name: string;
