@@ -2,16 +2,16 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Volume2, VolumeX, Music } from "lucide-react";
 
-import beaPerfectPair from "@/assets/audio/bea-perfectpair.mp3";
+import beaBeaches from "@/assets/audio/beabadoobee-beaches.mp3";
 import pokemonTrack from "@/assets/audio/pokemon.mp3";
 import clarityTrack from "@/assets/audio/clarity.mp3";
 import laufeyTrack from "@/assets/audio/laufey-from-the-start.mp3";
 
 // Map each section index to its audio source.
 const sectionTracks: (string | null)[] = [
-  beaPerfectPair, // 0 - HeroCard
-  beaPerfectPair, // 1 - Timeline
-  beaPerfectPair, // 2 - HobbyIntro
+  beaBeaches, // 0 - HeroCard
+  beaBeaches, // 1 - Timeline
+  beaBeaches, // 2 - HobbyIntro
   clarityTrack,   // 3 - Fitness
   pokemonTrack,   // 4 - Pokemon
   laufeyTrack,    // 5 - Food
