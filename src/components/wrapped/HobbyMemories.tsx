@@ -45,10 +45,16 @@ import hobbyTravel from "@/assets/hobby-travel.jpg";
 import hobbyTravel2 from "@/assets/hobby-travel-2.jpg";
 import hobbyTravel3 from "@/assets/hobby-travel-3.jpg";
 import hobbyTravel4 from "@/assets/hobby-travel-4.jpg";
-import hobbyFamily from "@/assets/hobby-family.jpg";
-import hobbyFamily2 from "@/assets/hobby-family-2.jpg";
-import hobbyFamily3 from "@/assets/hobby-family-3.jpg";
-import hobbyFamily4 from "@/assets/hobby-family-4.jpg";
+import family1 from "@/assets/family/family1.png";
+import family2 from "@/assets/family/family2.png";
+import family3 from "@/assets/family/family3.png";
+import family4 from "@/assets/family/family4.png";
+import family5 from "@/assets/family/family5.png";
+import family6 from "@/assets/family/family6.png";
+import family7 from "@/assets/family/family7.png";
+import family8 from "@/assets/family/family8.png";
+import family9 from "@/assets/family/family9.png";
+import family10 from "@/assets/family/family10.png";
 
 const hobbies = [
   {
