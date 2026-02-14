@@ -522,12 +522,12 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
         {/* FOOD SCATTER — Centered grid, all faces visible */}
         {layout === "food-scatter" && (() => {
           const itemStyles = [
-            { colSpan: "col-span-1", rot: -2 },
-            { colSpan: "col-span-1", rot: 3 },
-            { colSpan: "col-span-1", rot: -1 },
-            { colSpan: "col-span-1", rot: 4 },
-            { colSpan: "col-span-1", rot: -3 },
-            { colSpan: "col-span-1", rot: 2 },
+            { colSpan: "col-span-1", rot: -2, pos: "object-top" },
+            { colSpan: "col-span-1", rot: 3, pos: "object-center" },
+            { colSpan: "col-span-1", rot: -1, pos: "object-top" },
+            { colSpan: "col-span-1", rot: 4, pos: "object-top" },
+            { colSpan: "col-span-1", rot: -3, pos: "object-top" },
+            { colSpan: "col-span-1", rot: 2, pos: "object-center" },
           ];
           return (
             <div className="h-screen flex flex-col items-center justify-center px-4 md:px-10 py-6 overflow-hidden">
@@ -557,7 +557,7 @@ const HobbySlide = ({ title, subtitle, description, images, videos = [], bgClass
                       whileHover={{ scale: 1.08, rotate: 0, zIndex: 30 }}
                       className="rounded-xl overflow-hidden shadow-xl cursor-pointer aspect-[4/3]"
                     >
-                      <img src={img} alt="" className="w-full h-full object-cover object-top" />
+                      <img src={img} alt="" className={`w-full h-full object-cover ${style.pos}`} />
                     </motion.div>
                   );
                 })}
