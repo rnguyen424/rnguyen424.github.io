@@ -6,26 +6,27 @@ import brunoMarsTrack from "@/assets/audio/bruno-mars.mp3";
 
 interface SurpriseRevealProps {
   isActive?: boolean;
+  isMuted?: boolean;
 }
 
-const SurpriseReveal = ({ isActive = false }: SurpriseRevealProps) => {
+const SurpriseReveal = ({ isActive = false, isMuted = true }: SurpriseRevealProps) => {
   const [phase, setPhase] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Reset phase and stop audio when leaving this slide
+  // Stop audio when leaving slide or when muted
   useEffect(() => {
-    if (!isActive) {
+    if (!isActive || isMuted) {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
-      setPhase(0);
+      if (!isActive) setPhase(0);
     }
-  }, [isActive]);
+  }, [isActive, isMuted]);
 
-  // Play Bruno Mars when the reveal happens (phase 4) and slide is active
+  // Play Bruno Mars when phase 4, active, and not muted
   useEffect(() => {
-    if (phase === 4 && isActive && audioRef.current) {
+    if (phase === 4 && isActive && !isMuted && audioRef.current) {
       audioRef.current.volume = 0;
       audioRef.current.play().then(() => {
         const fadeIn = setInterval(() => {
@@ -37,7 +38,7 @@ const SurpriseReveal = ({ isActive = false }: SurpriseRevealProps) => {
         }, 50);
       }).catch(() => {});
     }
-  }, [phase, isActive]);
+  }, [phase, isActive, isMuted]);
 
   useEffect(() => {
     if (!isActive) return;

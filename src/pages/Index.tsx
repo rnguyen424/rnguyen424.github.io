@@ -15,6 +15,7 @@ const sections = sectionComponents;
 const Index = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentSection, setCurrentSection] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const isScrolling = useRef(false);
   const autoScrollTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -99,13 +100,13 @@ const Index = () => {
         transition={{ duration: 0.6, ease: "easeInOut" }}
       />
 
-      <MusicPlayer currentSection={currentSection} />
+      <MusicPlayer currentSection={currentSection} isMuted={isMuted} onToggleMute={() => setIsMuted(m => !m)} />
 
       <div ref={containerRef} className="h-screen overflow-hidden">
         {sections.map((Section, i) => (
           <div key={i} className="h-screen w-full overflow-y-auto">
             {Section === SurpriseReveal ? (
-              <SurpriseReveal isActive={currentSection === i} />
+              <SurpriseReveal isActive={currentSection === i} isMuted={isMuted} />
             ) : (
               <Section />
             )}
